@@ -79,17 +79,21 @@ include "header.php"
                     <label for="Type">Category</label>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input name="image" type="file" class="form-control shadow-none" id="floatingPassword"
-                        placeholder="Image"></input>
-
-                    <label for="floatingPassword">Image</label>
+                <div class="input-group">
+                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                 </div>
             </div>
         </div>
 
         <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
-            <button name="add" type="submit" class="btn">ADD</button>
+            <button name="add" type="submit" class="btn btn-primary">ADD</button>
         </div>
     </form>
 </body>
+<?php
+if (isset($_POST["add"])) {
+    echo 'hiie';
+}
+?>
