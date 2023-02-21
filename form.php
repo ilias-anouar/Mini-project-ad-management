@@ -154,21 +154,21 @@ if (isset($_POST["add"])) {
         array_push($images, $image);
     }
     $ad = new Announcement($title, $price, $date, $city, $country, $Category, $type, $images);
-    echo "<pre>";
-    var_dump($ad->type);
-    var_dump($ad->category);
-    var_dump($ad->Country);
-    var_dump($ad->City);
-    echo "</pre>";
+    // echo "<pre>";
+    // var_dump($ad->type);
+    // var_dump($ad->category);
+    // var_dump($ad->Country);
+    // var_dump($ad->City);
+    // echo "</pre>";
     require 'connect.php';
-    $sql = "SELECT client_id FROM `client` WHERE client_id LIKE 1";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $client_id = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($client_id) {
-        $client_id = $client_id['client_id'];
-    }
-    $sql = "INSERT INTO `annonce`(`ad_id`, `title`, `price`, `publication_date`, `last_modification_date`, `address`, `City`, `Contry`, `category`, `type`, `client_id`) VALUES (null,'$ad->title','$ad->price','$ad->publication_date',NOW(),'$ad->City,$ad->Country','$ad->City','$ad->Country','$ad->category','$ad->type','$client_id')";
+    // $sql = "SELECT client_id FROM `client` WHERE client_id LIKE 1";
+    // $stmt = $conn->prepare($sql);
+    // $stmt->execute();
+    // $client_id = $stmt->fetch(PDO::FETCH_ASSOC);
+    // if ($client_id) {
+    //     $client_id = $client_id['client_id'];
+    // }
+    $sql = "INSERT INTO `annonce`(`ad_id`, `title`, `price`, `publication_date`, `last_modification_date`, `address`, `City`, `Contry`, `category`, `type`, `client_id`) VALUES (null,'$ad->title','$ad->price','$ad->publication_date',NOW(),'$ad->City,$ad->Country','$ad->City','$ad->Country','$ad->category','$ad->type','2')";
     $conn->exec($sql);
     $last_id = $conn->lastInsertId();
 
