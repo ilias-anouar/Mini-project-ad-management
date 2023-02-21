@@ -1,10 +1,10 @@
 <?php
-function component($title, $image,$Category,$price, $type, $id)
+function component($title,$Category,$price, $type, $id)
 {
     $element = `<div class="container">
                 <div class="col-auto col-sm-12 col-md-12 col-lg-4 col-xl-4" style="padding-top: 15px;padding-bottom: 15px;padding-right: 15px;padding-left: 15px;">
                     <div class="bg-light border rounded shadow card" data-bss-hover-animate="pulse">
-                        <img class="card-img-top mb-3" src="$image" width="400" height="278">
+                        <img class="card-img-top mb-3" src="#" width="400" height="278">
                         <div class="card-body">
                             <div id="icon-span"> <p id="type-an">$type</p></div>
                             <h3 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">$title</h3>
