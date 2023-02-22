@@ -40,7 +40,8 @@ $result = $conn->query($sql);
       </a>
       <a href="">
         <?php echo $_SESSION['client_id']; ?>
-      </a>
+      </a> 
+      <a href="home.php">Home</a>
 
       <!-- Toggle button -->
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
@@ -125,6 +126,7 @@ $result = $conn->query($sql);
         </div>
       </div>
     </div>
+
     <?php
 
 
@@ -430,11 +432,11 @@ $result = $conn->query($sql);
     <!-- Copyright -->
   </footer>
 
-  <!--============== link script bootsrap ================ -->
+  <!--============== link script bootstrap ================ -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-  <!-- librarry JS sweetalert -->
+  <!-- library JS sweet alert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- link JS -->
   <script src="script.js"></script>
