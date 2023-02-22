@@ -1,13 +1,11 @@
 <?php
-    // session_start();
-    include 'logIn.php'; 
-    echo $_SESSION['client_id'];
-    include 'connect.php';
+// session_start();
+include 'logIn.php';
+echo $_SESSION['client_id'];
+include 'connect.php';
+$client_id = $_SESSION['client_id'];
+$sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
 
-
-    // $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = "$_SESSION['id']" AND Is_principale = 1 ";
-
-//  LIMIT 3";
 $result = $conn->query($sql);
 
 ?>
@@ -166,9 +164,15 @@ $result = $conn->query($sql);
             <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
               <?php echo $row['City']; ?>
             </p>
-            <button class="btn btn-danger" id="Details"
-              style="border: none;width: 100px;height: 38px;margin-left: 14px;color: A63F04;background: #A63F04;"
-              type="button" data-target="#Details<?php echo $id ?>">Details</button>
+            <button class="btn btn-danger" id="Edit" style="border: none;width: 100px;height: 38px;background: #9ecad5;"
+              type="button" data-target="#Edit<?php echo $row['ad_id'] ?>">Edite</button>
+            <button class=" btn btn-danger" id="Details"
+              style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
+              type="button" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
+            <button class=" btn btn-outline-success" id="Delete" type="button"
+              style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;"
+              data-target="#Delete<?php echo $row['ad_id'] ?>">Delete</button>
+
           </div>
         </div>
       </div>
@@ -186,7 +190,7 @@ $result = $conn->query($sql);
 
   <!-- ================= Modal Sign up =================-->
   <!-- Modal -->
-  <div class="modal fade" id="addAnnonceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  <div class=" modal fade" id="addAnnonceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
