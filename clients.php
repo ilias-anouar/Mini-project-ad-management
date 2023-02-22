@@ -1,9 +1,8 @@
 <?php
 session_start();
-// include 'delete.php';
 include 'logIn.php';
-include "header.php";
 echo $_SESSION['client_id'];
+include "header.php";
 include 'connect.php';
 $client_id = $_SESSION['client_id'];
 $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
@@ -41,7 +40,7 @@ $result = $conn->query($sql);
       </a>
       <a href="">
         <?php echo $_SESSION['client_id']; ?>
-      </a> 
+      </a>
       <a href="home.php">Home</a>
 
       <!-- Toggle button -->
@@ -129,367 +128,292 @@ $result = $conn->query($sql);
     </div>
 
     <?php
-
-
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      // echo "<pre>";
-      // var_dump($row);
-      // echo "</pre>";
-      $id = $row['ad_id'];
-
       ?>
 
 
       <div class="card wow">
-          <img class="card-img-top mb-3 img-card" src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
-          <div class="card-body">
-            <div id="icon-span">
-              <p id="type-an">
-                <?php echo $row['type']; ?>
-              </p>
-              <form action="" method="POST">
-                <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
-              </form>
-            </div>
-            <h3 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
-              <?php echo $row['title']; ?>
-            </h3>
-            <h5 class="card-sub-title"
-              style="font-family: Antic, sans-serif;color: #38ae53;margin: 13px;margin-top: 10px;margin-right: 20px;margin-bottom: 18px;margin-left: 43px;font-size: 23px; width: 100%; ">
-              <strong>
-                <?php echo $row['category']; ?> |
-                <?php echo $row['price']; ?> $
-              </strong>
-            </h5>
-            <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
-              <?php echo $row['City']; ?>
+        <img class="card-img-top mb-3 img-card"
+          src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
+        <div class="card-body">
+          <div id="icon-span">
+            <p id="type-an">
+              <?php echo $row['type']; ?>
             </p>
-            <button type="button" class=" btn btn-outline-success"  style="border: none;width: 100px;height: 38px;background: #9ecad5;" data-toggle="modal" data-target="#Edit<?php echo $row['ad_id'] ?>">
-            Edit
-            </button>
-            <button class=" btn btn-danger" id="Details"
-              style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
-              type="button" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
-              <!-- Button trigger modal -->
-            <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet<?php echo $row['ad_id'] ?>">
-            Delete
-            </button>
+            <form action="" method="POST">
+              <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
 
           </div>
+          <h3 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+            <?php echo $row['title']; ?>
+          </h3>
+          <h5 class="card-sub-title"
+            style="font-family: Antic, sans-serif;color: #38ae53;margin: 13px;margin-top: 10px;margin-right: 20px;margin-bottom: 18px;margin-left: 43px;font-size: 23px; width: 100%; ">
+            <strong>
+              <?php echo $row['category']; ?> |
+              <?php echo $row['price']; ?> $
+            </strong>
+          </h5>
+          <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+            <?php echo $row['City']; ?>
+          </p>
+          <button type="button" class=" btn btn-outline-success"
+            style="border: none;width: 100px;height: 38px;background: #9ecad5;" data-toggle="modal"
+            data-target="#Edit<?php echo $row['ad_id'] ?>">
+            Edit
+          </button>
+          <button type="button" class=" btn btn-outline-success" data-toggle="modal"
+            data-target="#Delet<?php echo $row['ad_id'] ?>">
+            Delete
+          </button>
+          </form>
+          <form action="detailes.php" method="post">
+            <input type="hidden" name="detailesID" value="<?php echo $row['ad_id'] ?>">
+            <button class=" btn btn-danger" name="Details" id="Details"
+              style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
+              type="submit" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
+          </form>
+        </div>
       </div>
 
-     </div>
+      </div>
       <!-- Modal -->
-      <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                      <form action="delete.php" method="post">
-                          Are you sure you want to delete Announce <?php echo $row['title']?>?
-                          <p><?php echo $id  ?></p>
-                          <input type="hidden" name="id" value="<?php echo $row['ad_id'] ?>">
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button  class="btn btn-danger" name="delete">Delete</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+      <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form action="delete.php" method="post">
+                Are you sure you want to delete Announce
+                <?php echo $row['title'] ?>?
+                <p>
+                  <?php echo $id ?>
+                </p>
+                <input type="hidden" value="<?php echo $row['ad_id'] ?>">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button class="btn btn-danger" name="delete">Delete</button>
+            </div>
+            </form>
+          </div>
+        </div>
       </div>
+      <?php
+      if (isset($_POST["Details"])) {
+
+        $id = $_POST["id"];
+        $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`   WHERE ad_id =$id  ";
+        $result = $conn->query($sql);
+
+        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          echo "<pre>";
+          var_dump($row);
+          echo "</pre>";
+
+        }
+      }
+      ;
+      ?>
 
 
 
 
-           <!-- Modal Edite -->
-           <div class="modal fade" id="Edit<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-body">
-                      <form action="" method="post">
-        <h2 class="fw-bold">Add advert</h2>
-
-        <div class="d-flex justify-content-evenly">
-            <div>
-                <div class="form-floating mb-3">
-                    <input name="title" type="text" class="form-control shadow-none" id="floatingInput"
-                        placeholder="Title"  value = "<?php echo $row['title']; ?>"></input>
-
-                    <label for="floatingInput">Title</label>
-                    <p><?php echo $row['ad_id'] ?>"</p>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="text" name="city" class="form-control shadow-none" placeholder="City"
-                        id="floating" value ="<?php echo $row['City']; ?>"></input>
-
-                    <label for="floating">City</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input name="country" type="text" class="form-control shadow-none" id="floating"
-                        placeholder="Country" value ="<?php echo $row['Country']; ?>" ></input>
-
-                    <label for="floating">Country</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input name="date" type="date" class="form-control shadow-none" id="floating"
-                        placeholder="Date"  value ="<?php echo $row['Date']; ?>" ></input>
-
-                    <label for="floating">Date</label>
-                </div>
+      <!-- Modal Edite -->
+      <div class="modal fade" id="Edit<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <form action="" method="post">
+                <h2 class="fw-bold">Add advert</h2>
 
-            <div>
-                <div class="form-floating mb-3">
-                    <input name="price" type="number" class="form-control shadow-none" id="floatingPassword"
-                        placeholder="Price" value = "<?php echo $row['Price']; ?>" ></input>
+                <div class="d-flex justify-content-evenly">
+                  <div>
+                    <div class="form-floating mb-3">
+                      <input name="title" type="text" class="form-control shadow-none" id="floatingInput"
+                        placeholder="Title" value="<?php echo $row['title']; ?>"></input>
+                      <label for="floatingInput">Title</label>
+                    </div>
 
-                    <label for="floatingPassword"  >Price</label>
-                </div>
+                    <div class="form-floating mb-3">
+                      <input type="text" name="city" class="form-control shadow-none" placeholder="City" id="floating"
+                        value="<?php echo $row['City'] ?>"></input>
+                      <label for="floating">City</label>
+                    </div>
 
-                <div class="form-floating mb-3">
-                    <select name="type" class="form-control shadow-none" aria-label=".form-select" id="type">
-                        <option value= "<?php echo $row['type']; ?>"></option>
+                    <div class="form-floating mb-3">
+                      <input name="country" type="text" class="form-control shadow-none" id="floating"
+                        placeholder="Country" value="<?php echo $row['Contry'] ?>"></input>
+                      <label for="floating">Country</label>
+                    </div>
 
-                        <option value="sale">Selling</option>
-
-                        <option value="rent">Renting</option>
-                    </select>
-
-                    <label for="Type">Type</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <select name="Category" class="form-control shadow-none" aria-label=".form-select" id="Category">
-                        <option value="<?php echo $row['Category']; ?>"></option>
-
-                        <option value="apartment">Apartment</option>
-
-                        <option value="house">House</option>
-                        <option value="villa">Villa</option>
-                        <option value="office">Office</option>
-                        <option value="land">land</option>
-                    </select>
-
-                    <label for="Category">Category</label>
-                </div>
-
-                <div class="input-group mb-3">
-                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-                </div>
-                <div id="upload">
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
-            <button name="add" type="submit" class="btn btn-primary">ADD</button>
-        </div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button  class="btn btn-danger" name="delete">Delete</button>
-                        </div>
-                      </form>
+                    <div class="form-floating mb-3">
+                      <input name="date" type="date" class="form-control shadow-none" id="floating" placeholder="Date"
+                        value="<?php echo $row['publication_date']; ?>" disabled></input>
+                      <label for="floating">Date</label>
                     </div>
                   </div>
+
+                  <div>
+                    <div class="form-floating mb-3">
+                      <input name="price" type="number" class="form-control shadow-none" id="floatingPassword"
+                        placeholder="Price" value="<?php echo $row['price']; ?>"></input>
+
+                      <label for="floatingPassword">Price</label>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                      <select name="type" class="form-control shadow-none" aria-label=".form-select" id="type">
+                        <?php
+                        $type = array("sale", "rent");
+                        for ($i = 0; $i < count($type); $i++) {
+                          if ($type[$i] == $row['type']) {
+                            echo "<option value='$type[$i]' selected>$type[$i]</option>";
+                          } else {
+                            echo "<option value='$type[$i]'>$type[$i]</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                      <label for="Type">Type</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                      <select name="Category" class="form-control shadow-none" aria-label=".form-select" id="Category">
+                        <?php
+                        $category = array("apartment", "house", "villa", "office", "land");
+                        for ($i = 0; $i < count($category); $i++) {
+                          if ($category[$i] == $row['category']) {
+                            echo "<option value='$category[$i]' selected>$category[$i]</option>";
+                          } else {
+                            echo "<option value='$category[$i]'>$category[$i]</option>";
+                          }
+                        }
+                        ?>
+                      </select>
+                      <label for="Category">Category</label>
+                    </div>
+                    <div class="input-group mb-3">
+                      <input type="file" id="Image" class="form-control" id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                      <button class="btn btn-success" type="button" id="inputGroupFileAddon04"><i
+                          class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <div id="upload">
+                      <?php
+                      // $id = $row["ad_id"];
+                      // $send = "SELECT * FROM `image_d_annonce`  where `ad_id`=$id";
+                      // $result = $conn->query($send);
+                      // while ($arry = $result->fetch(PDO::FETCH_ASSOC)) {
+                      //   $image_url = $arry["image_url"];
+                      //   echo `<div class="input-group mb-3">
+                      //   <div class="input-group-text btn-success">
+                      //   <input class="form-check-input mt-0" type="Radio" value="$image_url" name="is_principal" aria-label="Checkbox for following text input">
+                      //   </div>
+                      //   <input name='image${i}' type="text" class="form-control" aria-label="Text input with checkbox" value="$image_url">
+                      //   <button class="btn btn-danger close" onclick="remove(this)" type="button" id="button-addon2"><span aria-hidden="true">&times;</span></button>
+                      //   </div> `;
+                      // }
+                      ?>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
+                  <button name="update" type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            </form>
+          </div>
+        </div>
       </div>
       <?php
     }
     ;
     ?>
+    <?php
+    if (isset($_POST["update"])) {
+      include_once("/form.php");
+      $title = $_POST["title"];
+      $city = $_POST["city"];
+      $country = $_POST["country"];
+      $date = $_POST["date"];
+      $price = $_POST["price"];
+      $type = $_POST["type"];
+      $Category = $_POST["Category"];
+      $image_principal = $_POST["is_principal"];
+      $images = array();
+      for ($i = 1; $i <= 5; $i++) {
+        $image['name'] = "image$i";
+        $image['path'] = $_POST["image$i"];
+        $image['type'] = check_type($_POST["image$i"], $image_principal);
+        array_push($images, $image);
+      }
+      $update = new Announcement($title, $price, $date, $city, $country, $Category, $type, $images);
+    }
+    ?>
+    <script>
+      function remove(that) {
+        let item = that.closest("div");
+        item.remove();
+      }
+      let i = 0;
+      let addedimages = document.getElementById("inputGroupFileAddon04")
+      addedimages.addEventListener('click', function () {
+        i++
+        let image = document.getElementById("Image");
+        let div = document.getElementById("upload");
+        let input = document.createElement('div')
+        input.innerHTML = `<div class="input-group mb-3">
+<div class="input-group-text btn-success">
+<input class="form-check-input mt-0" type="Radio" value="${image.value}" name="is_principal" aria-label="Checkbox for following text input">
+</div>
+<input name='image${i}' type="text" class="form-control" aria-label="Text input with checkbox" value="${image.value}">
+<button class="btn btn-danger close" onclick="remove(this)" type="button" id="button-addon2"><span aria-hidden="true">&times;</span></button>
+</div>`;
+        image.value = ""
+        div.append(input);
+      })
+    </script>
   </main>
-  <!-- ================= Modal Log in =================-->
-  <?php
-  // include 'logIn.php'; 
-  ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!-- ================= Modal Sign up =================-->
-  <!-- Modal -->
-  <div class=" modal fade" id="addAnnonceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+  <!-- ==================- Modal -=============================== -->
+  <!-- MODAL DELETE -->
+  <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add Annonce</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-
-
-          <form action="clients.php" method="POST" enctype="multipart/form-data">
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="firstName">title:</label>
-                  <input type="text" id="firstName" class="form-control form-control-lg" name="firstName" required />
-                </div>
-              </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="lastName">price:</label>
-                  <input type="text" id="lastName" class="form-control form-control-lg" name="lastName" required />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline">
-                  <label class="form-label" for="emailAddress">publication date:</label>
-                  <input type="email" id="emailAddress" class="form-control form-control-lg" name="email" required />
-                </div>
-              </div>
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline">
-                  <label class="form-label" for="phoneNumber">City</label>
-                  <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="phonNumber" required />
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline">
-                  <select name="category" id="category">category
-                    <option value="Rent">RENT</option>
-                    <option value="Sale">SALE</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline">
-                  <label class="form-label" for="phoneNumber">last modification date</label>
-                  <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="phonNumber" required />
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline">
-                  <label class="form-label" for="emailAddress">Contry:</label>
-                  <input type="password" id="emailAddress" class="form-control form-control-lg" name="password"
-                    required />
-                </div>
-              </div>
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline">
-                  <label class="form-label" for="phoneNumber">confirm password:</label>
-                  <input type="password" id="phoneNumber" namee="confirmPassword" class="form-control form-control-lg"
-                    required />
-                </div>
-              </div>
-            </div>
-
-            <div class="text-center pt-1 mb-5 pb-1">
-              <button class="btn w-100 btn-log-in" onclick="signUp()" type="submit" name="sign_up">
-                SAdd Annonce
-              </button>
-            </div>
-          </form>
+          <form action="delete.php?id=<?php echo $row['ad_id'] ?>" method="post">
+            Are you sure you want to delete Annonce <?php echo $row['title'] ?>?
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">
-            Close
-          </button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-danger" name="delete">Delete</button>
         </div>
+        </form>
       </div>
     </div>
   </div>
-
-  <!-- ====== MODAL MOR INFO ============== -->
-  <div class="modal fade bd-example-modal-lg" id="btn-morInfo" tabindex="-1" role="dialog"
-    aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">More Details</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body container">
-          <!-- slider image -->
-          <div class="row mt-4">
-            <img src="image/r-architecture-T6d96Qrb5MY-unsplash.jpg" class="d-block w-50 h-50" alt="image" />
-            <div class="row w-50">
-              <img src="image/r-architecture-T6d96Qrb5MY-unsplash.jpg" class="d-block w-50 h-50 mb-1" alt="image" />
-              <img src="image/r-architecture-T6d96Qrb5MY-unsplash.jpg" class="d-block w-50 h-50 mb-1" alt="image" />
-              <img src="image/r-architecture-T6d96Qrb5MY-unsplash.jpg" class="d-block w-50 h-50" alt="image" />
-              <img src="image/r-architecture-T6d96Qrb5MY-unsplash.jpg" class="d-block w-50 h-50" alt="image" />
-            </div>
-          </div>
-          <div>
-            <h2>Title</h2>
-            <p>category</p>
-            <p>type</p>
-            <p>area</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-        <!-- ==================- Modal -=============================== -->
-        <!-- MODAL DELETE -->
-        <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                <form action="delete.php?id=<?php echo $row['ad_id'] ?>" method="post">
-                    Are you sure you want to delete Annonce <?php echo $row['title'] ?>?
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button class="btn btn-danger" name="delete">Delete</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-        </div>
 
   <!-- ============ footer ================= -->
   <footer class="bg-light text-center text-white mt-5">
@@ -522,15 +446,12 @@ $result = $conn->query($sql);
       </section>
       <!-- Section: Social media -->
     </div>
-    <!-- Grid container -->
-
     <!-- Copyright -->
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
       © 2023
     </div>
     <!-- Copyright -->
   </footer>
-
   <!--============== link script bootstrap ================ -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
