@@ -133,7 +133,7 @@
           }
         }
         if (isset($_SESSION['first_name'])) {
-          header("location: clients.php");
+          header("location: /home.php");
         }
       }
     ?>
