@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
 #lorem {
     color: grey;
     font-family: serif
@@ -197,28 +204,6 @@ label span {
     color: #f7ce50;
 }
 
-#details {
-    width: 100%;
-    height: 60px;
-}
-
-.morDetail {
-    background-color: #0aa7cd;
-}
-
-div p span {
-    font-weight: bold;
-}
-
-#mor-details {
-    background-color: #f7ce50;
-}
-
-#mor-details:hover {
-    background-color: #093c71;
-    color: #fff;
-    transition: all 0.3s ease !important;
-}
 
 /* ======== modal sign in =========== */
 .btn-log-in {

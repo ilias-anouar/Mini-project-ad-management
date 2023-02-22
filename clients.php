@@ -30,102 +30,81 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top" id="nav">
-    <!-- Container wrapper -->
-    <div class="container">
-      <!-- Navbar brand -->
-      <a class="navbar-brand me-2" href="https://mdbgo.com/">
-        <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" />
-      </a>
-      <a href="">
-        <?php echo $_SESSION['client_id']; ?>
-      </a> 
-      <a href="home.php">Home</a>
 
-      <!-- Toggle button -->
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
-        aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
 
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarButtonsExample">
-        <!-- Left links -->
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item mr-4">
-            <a class="nav-link text-white" href="#">Home</a>
-          </li>
-        </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="nav">
+      <!-- Container wrapper -->
+      <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="https://mdbgo.com/">
+          <img
+            src="image/logo.png"
+            height="16"
+            alt="MDB Logo"
+            loading="lazy"
+            style="margin-top: -1px"
+          />
+        </a>
 
-        <!-- Button SIGN UP -->
-        <button type="button" class="btn me-3 btn-success" id="btn-addAnnonce" data-toggle="modal"
-          data-target="#addAnnonceModal">
-          <span>Add annonce</span> <i class="fa-solid fa-plus"></i>
+        <!-- Toggle button -->
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-mdb-toggle="collapse"
+          data-mdb-target="#navbarButtonsExample"
+          aria-controls="navbarButtonsExample"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
         </button>
-        <!-- button LOG IN -->
-        <div class="d-flex align-items-center">
-          <a type="button" class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
-            data-toggle="modal" data-target="#btn">
-            Profile
-            <i class="fa-solid fa-user"></i>
-          </a>
-        </div>
-        <a href="logout.php">logout <i class="fa-solid fa-right-from-bracket"></i></a>
 
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+          <!-- Left links -->
+          <ul class=" me-auto mb-2 mb-lg-0 nav nav-pills">
+            <li class="nav-item mr-4">
+              <a class="nav-link text-white" href="home.php">Home</a>
+            </li>
+            <li class="nav-item mr-4">
+              <a class="nav-link text-white" href="clients.php">My Annonce</a>
+            </li>
+          </ul>
+
+          <!-- Button SIGN UP -->
+          <button
+            type="button"
+            class="btn me-3 btn-success"
+            id="btn-addAnnonce"
+            data-toggle="modal"
+            data-target="#addAnnonceModal"
+          >
+            <span>Add annonce</span> <i class="fa-solid fa-plus"></i>
+          </button>
+          <!-- button LOG IN -->
+          <div class="d-flex align-items-center">
+            <a
+              type="button"
+              class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
+              data-toggle="modal"
+              data-target="#btn"
+            >
+              Profile
+              <i class="fa-solid fa-user"></i>
+            </a>
+          </div>
+        <a href="logout.php" class="nav-link disabled text-light">logout<i class="fa-solid fa-right-from-bracket"></i></a>
+        </div>
+        <!-- Collapsible wrapper -->
       </div>
-      <!-- Collapsible wrapper -->
-    </div>
-    <!-- Container wrapper -->
-  </nav>
+      <!-- Container wrapper -->
+    </nav>
 
   <main>
     <!-- ========== div serch by city and type and categories and price ==========-->
-    <div class="" id="slider-three">
-      <div id="btn-serch">
-        <div class="form-filter d-flex">
-          <form action="search.php" method="POST" class="w-100 d-flex justify-content-center align-items-center gap-1">
-            <label for="" class="d-flex gap-1">
-              <span>city:</span>
-              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-                <option value="Tanger">Tanger</option>
-                <option value="Rabat">Rabat</option>
-                <option value="Marakech">Marakech</option>
-                <option value="Fes">Fes</option>
-              </select>
-            </label>
-            <label for="" class="d-flex ml-1 gap-1">
-              <span>type:</span>
-              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-                <option value="apartment">apartment</option>
-                <option value="House">House</option>
-                <option value="Villa">Villa</option>
-                <option value="desk">desk</option>
-                <option value="ground">ground</option>
-              </select>
-            </label>
-            <label for="" class="d-flex ml-1 gap-1">
-              <span>categories:</span>
-              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-                <option value="Rent">For Rent</option>
-                <option value="Sale">For Sale</option>
-              </select>
-            </label>
-            <label for="" class="d-flex ml-1 gap-1" id="max-price">
-              <span>Max Price: </span>
-              <input name="max_Price" type="number" min="0" />
-            </label>
-            <label for="" class="d-flex ml-1 gap-1" id="min-Price">
-              <span>Min Price:</span>
-              <input name="min_Price" type="number" min="0" />
-            </label>
-            <button name="searchbtn" type="submit" class="btn btn-primary ml-4" id="btn-search">
-              Search
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
+    <!-- <div class="" id="slider-three"> -->
+    <div class="container mt-5 d-flex flex-wrap gap-5 justify-content-center">
 
     <?php
 
@@ -157,17 +136,18 @@ $result = $conn->query($sql);
             <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
               <?php echo $row['City']; ?>
             </p>
-            <button type="button" class=" btn btn-outline-success"  style="border: none;width: 100px;height: 38px;background: #9ecad5;" data-toggle="modal" data-target="#Edit<?php echo $row['ad_id'] ?>">
-            Edit
-            </button>
-            <button class=" btn btn-danger" id="Details"
-              style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
-              type="button" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
-              <!-- Button trigger modal -->
-            <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet<?php echo $row['ad_id'] ?>">
-            Delete
-            </button>
-
+            <div class="d-flex justify-content-around gap-3">
+              <button type="button" class=" btn btn-outline-success"  style="border: none;width: 100px;height: 38px;background: #9ecad5;" data-toggle="modal" data-target="#Edit<?php echo $row['ad_id'] ?>">
+              Edit
+              </button>
+              <button class=" btn btn-danger" id="Details"
+                style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
+                type="button" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
+                <!-- Button trigger modal -->
+              <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet<?php echo $row['ad_id'] ?>">
+                Delete
+              </button>
+            </div>
           </div>
       </div>
      </div>

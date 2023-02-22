@@ -6,6 +6,42 @@ include 'connect.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ad management</title>
+    <!-- link bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+    />
+    <!-- link font awesome library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- link CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+      <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="nav">
+      <!-- Container wrapper -->
+      <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="https://mdbgo.com/">
+          <img
+            src="image/logo.png"
+            height="16"
+            alt="MDB Logo"
+            loading="lazy"
+            style="margin-top: -1px"
+          />
+        </a>
 
 <head>
   <meta charset="UTF-8" />
@@ -93,7 +129,7 @@ include 'connect.php';
             </label>
             <label for="" class="d-flex ml-1 gap-1">
               <span>categories:</span>
-              <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
                 <option value="Rent">For Rent</option>
                 <option value="Sale">For Sale</option>
               </select>
@@ -112,6 +148,58 @@ include 'connect.php';
           </form>
         </div>
       </div>
+    </div>
+      <?php
+      $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
+
+      //  LIMIT 3";
+      $result = $conn->query($sql);
+      
+    
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        // echo "<pre>";
+        // var_dump($row);
+        // echo "</pre>";
+        $id = $row['ad_id'] ;
+    
+    ?>
+
+
+            <div class="col-auto col-sm-12 col-md-12 col-lg-4 col-xl-4"
+                style="padding-top: 15px;padding-bottom: 15px;padding-right: 15px;padding-left: 15px; ">
+                <div class="bg-light border rounded shadow card" data-bss-hover-animate="pulse">
+
+                    <img class="card-img-top mb-3" src="images/<?php  echo str_replace("C:fakepath","",$row['image_url']);?>"
+                      width="400" height="278">
+                    <div class="card-body">
+                        <div id="icon-span">
+                            <p id="type-an">
+                                <?php echo $row['type'] ; ?>
+                            </p>
+                            <form action="" method="GET">
+                                <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
+                            </form>
+                        </div>
+                        <h3 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+                            <?php echo $row['title']; ?>
+                        </h3>
+                        <h5 class="card-sub-title"
+                            style="font-family: Antic, sans-serif;color: #38ae53;margin: 13px;margin-top: 10px;margin-right: 20px;margin-bottom: 18px;margin-left: 43px;font-size: 23px; width: 100%; ">
+                            <strong>
+                                <?php echo $row['category']; ?> |
+                                <?php echo $row['price']; ?> $
+                            </strong>
+                        </h5>
+                        <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+                            <?php echo $row['City']; ?>
+                        </p>
+                        <button class="btn btn-danger" id="Details"
+                            style="border: none;width: 100px;height: 38px;margin-left: 14px;color: A63F04;background: #A63F04;"
+                            type="button" data-target="#Details<?php echo $id ?>">Details</button>
+                    </div>
+                </div>
+            </div>
+     
     </div>
     <?php
     $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
