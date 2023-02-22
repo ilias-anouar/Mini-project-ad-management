@@ -97,8 +97,6 @@
         $pass = $_POST['inpPassword'];
         
 
-        // echo $_SESSION['client_id'] ;
-        echo 'rrrrrrrrrrrrrrrrrrrrr';
         
 
         if (empty($email) || empty($pass)) {
