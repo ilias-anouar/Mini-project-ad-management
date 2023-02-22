@@ -37,3 +37,216 @@
     margin-top: 25%;
     font-style: oblique;
 }
+/* ================================================================================================================== */
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap'); */
+
+
+
+/* =========== NAVBAR ======== */
+#logo {
+    width: 100px;
+    height: 103px;
+}
+
+#btn-addAnnonce {
+    /* background-color: #08ACF2; */
+    color: #eee;
+    display: flex;
+    height: 39px;
+    font-weight: 600;
+    align-items: center;
+    gap: 6px;
+    border: none;
+}
+
+#btn-addAnnonce:hover {
+    /* background-color: #0daf63; */
+    background-color: #093c71;
+}
+
+#btn-addAnnonce span {
+    font-size: 1.2rem;
+}
+
+#btn-addAnnonce i {
+    font-size: 1.3rem;
+    padding-top: 6px;
+}
+
+#nav {
+    background-color: #2d2d2d;
+}
+
+#slider-three {
+    height: 290px;
+    width: 100%;
+    background: url(image/r-architecture-wDDfbanbhl8-unsplash.jpg) center center/cover;
+}
+
+.type-annonce {
+    width: 60px;
+    height: 60px;
+    background-color: #f7ce50;
+    position: absolute;
+    border-radius: 3px 27px;
+    left: 2%;
+    top: 39%;
+    display: flex;
+    border: #fff 3px solid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.type-annonce:hover {
+    background-color: #093c71;
+    color: #fff;
+}
+
+.type-annonce h4 {
+    font-size: 1.35rem;
+}
+
+
+.sign-in {
+    font-weight: bold;
+    height: 39px;
+    border: #fff 2px solid;
+    color: #fff;
+    /* background-color: #fff; */
+
+}
+
+.sign-in:hover {
+    color: #fff;
+    background-color: #093c71;
+}
+
+
+.form-filter {
+    background-color: rgba(0, 0, 0, 0.644);
+    height: 70px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 10px;
+}
+
+input {
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
+select option {
+    padding: 7px;
+}
+
+#btn-serch {
+    padding-top: 10%;
+    position: absolute;
+    height: 3rem;
+    bottom: 76%;
+    left: 6%;
+    border-radius: 5%;
+}
+
+label span {
+    font-weight: bold;
+    font-size: 18px;
+    color: #fff;
+}
+
+#btn-search {
+    height: 36px;
+    background-color: #f7ce50;
+    border: none;
+    font-weight: 600;
+}
+
+#btn-search:hover {
+    background-color: #093c71;
+}
+
+/* =========== style cards================ */
+.wow:hover {
+    text-shadow: none !important;
+    box-sizing: border-box !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    -webkit-transform: scale(1.1) !important;
+    -ms-transform: scale(1.1) !important;
+    transform: scale(1.1) !important;
+    z-index: 2;
+}
+
+.wow {
+    box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+    cursor: pointer !important;
+}
+
+.wow div h2 {
+    /* position: absolute;
+    left: 58%;
+    top: 68%; */
+    color: #f7ce50;
+}
+
+#details {
+    width: 100%;
+    height: 60px;
+}
+
+.morDetail {
+    background-color: #0aa7cd;
+}
+
+div p span {
+    font-weight: bold;
+}
+
+#mor-details {
+    background-color: #f7ce50;
+}
+
+#mor-details:hover {
+    background-color: #093c71;
+    color: #fff;
+    transition: all 0.3s ease !important;
+}
+
+/* ======== modal sign in =========== */
+.btn-log-in {
+    background-color: #093c71;
+    color: #fff;
+    font-weight: 700;
+}
+
+.btn-log-in:hover {
+    background-color: #f7ce50;
+}
+
+
+/* ===================== style page clients ======================== */
+/* style cards */
+#delete {
+    background-color: red;
+    color: #eee;
+}
+
+#delete:hover {
+    background-color: #093c71;
+}
+
+#edit {
+    background-color: #0aa7cd;
+    color: #eee;
+}
+
+#edit:hover {
+    background-color: #f7ce50;
+}
+
+.addAnnonce-clients {
+    /* background-color: #0aa7cd; */
+}
