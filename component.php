@@ -1,5 +1,5 @@
 <?php
-function component($title,$Category,$price, $type, $id)
+function component($title,$category,$price, $type,$City, $ad_id,$image_url,$id_image_d_annonce,)
 {
     $element = `<div class="container">
                 <div class="col-auto col-sm-12 col-md-12 col-lg-4 col-xl-4" style="padding-top: 15px;padding-bottom: 15px;padding-right: 15px;padding-left: 15px;">
@@ -9,11 +9,11 @@ function component($title,$Category,$price, $type, $id)
                             <div id="icon-span"> <p id="type-an">$type</p></div>
                             <h3 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">$title</h3>
                             <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;margin: 13px;margin-top: 10px;margin-right: 20px;margin-bottom: 18px;margin-left: 43px;font-size: 23px; width: 100%; ">
-                                <strong>$Category  | $price $ </strong></h5>
+                                <strong>$category  | $price $ </strong></h5>
                                 <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">Boston</p>
-                                <button class="btn btn-danger" id="Edit" style="border: none;width: 100px;height: 38px;background: #9ecad5;" type="button" data-target="#Edit<?php echo "$id" ?>>Edite</button>
-                                <button class="btn btn-danger" id ="Details" style="border: none;width: 100px;height: 38px;margin-left: 14px;color: A63F04;background: #A63F04;" type="button" data-target="#Details<?php echo "$id" ?>>Details</button>
-                                <button class="btn btn-outline-success" id="Delete" type="button" style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;" data-target="#Delete<?php echo "$id" ?>>Delete</button></div>
+                                <button class="btn btn-danger" id="Edit" style="border: none;width: 100px;height: 38px;background: #9ecad5;" type="button" data-target="#Edit<?php echo "$ad_id" ?>>Edite</button>
+                                <button class="btn btn-danger" id ="Details" style="border: none;width: 100px;height: 38px;margin-left: 14px;color: A63F04;background: #A63F04;" type="button" data-target="#Details<?php echo "$ad_id" ?>>Details</button>
+                                <button class="btn btn-outline-success" id="Delete" type="button" style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;" data-target="#Delete<?php echo "$ad_id" ?>>Delete</button></div>
                             </div>
                         </div>
                     </div>`;
