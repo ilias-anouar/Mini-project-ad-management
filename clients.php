@@ -1,5 +1,6 @@
 <?php
-// session_start();
+session_start();
+// include 'delete.php';
 include 'logIn.php';
 echo $_SESSION['client_id'];
 include 'connect.php';
@@ -39,7 +40,8 @@ $result = $conn->query($sql);
       </a>
       <a href="">
         <?php echo $_SESSION['client_id']; ?>
-      </a>
+      </a> 
+      <a href="home.php">Home</a>
 
       <!-- Toggle button -->
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
@@ -124,6 +126,7 @@ $result = $conn->query($sql);
         </div>
       </div>
     </div>
+
     <?php
 
 
@@ -169,14 +172,45 @@ $result = $conn->query($sql);
             <button class=" btn btn-danger" id="Details"
               style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
               type="button" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
-            <button class=" btn btn-outline-success" id="Delete" type="button"
+            <!-- <button class=" btn btn-outline-success"  type="button"
               style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;"
-              data-target="#Delete<?php echo $row['ad_id'] ?>">Delete</button>
+              data-target="#Delete">Delete</button> -->
+
+              <!-- Button trigger modal -->
+            <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet<?php echo $row['ad_id'] ?>">
+            Delete
+            </button>
 
           </div>
         </div>
       </div>
 
+      </div>
+      
+      
+      <!-- Modal -->
+      <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                      <form action="delete.php" method="post">
+                          Are you sure you want to delete Announce <?php echo $row['title']?>?
+                          <p><?php echo $id  ?></p>
+                          <input type="hidden" value="<?php echo $row['ad_id'] ?>">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button  class="btn btn-danger" name="delete">Delete</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
       </div>
       <?php
     }
@@ -187,6 +221,27 @@ $result = $conn->query($sql);
   <?php
   // include 'logIn.php'; 
   ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <!-- ================= Modal Sign up =================-->
   <!-- Modal -->
@@ -314,6 +369,29 @@ $result = $conn->query($sql);
       </div>
     </div>
   </div>
+        <!-- ==================- Modal -=============================== -->
+        <!-- MODAL DELETE -->
+        <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                <form action="delete.php?id=<?php echo $row['ad_id'] ?>" method="post">
+                    Are you sure you want to delete Annonce <?php echo $row['title'] ?>?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-danger" name="delete">Delete</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+        </div>
 
   <!-- ============ footer ================= -->
   <footer class="bg-light text-center text-white mt-5">
@@ -355,11 +433,11 @@ $result = $conn->query($sql);
     <!-- Copyright -->
   </footer>
 
-  <!--============== link script bootsrap ================ -->
+  <!--============== link script bootstrap ================ -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
-  <!-- librarry JS sweetalert -->
+  <!-- library JS sweet alert -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- link JS -->
   <script src="script.js"></script>

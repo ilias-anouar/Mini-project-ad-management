@@ -285,6 +285,9 @@ $result = $conn->query($sql);
         // var_dump($row);
         // echo "</pre>";
         $id = $row['ad_id'] ;
+        // echo $id;
+      
+
     
     ?>
 
