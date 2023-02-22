@@ -139,7 +139,7 @@ $result = $conn->query($sql);
       ?>
 
 
-      <div class="col-auto col-sm-12 col-md-12 col-lg-4 col-xl-4"
+      <div class="card wow"
         style="padding-top: 15px;padding-bottom: 15px;padding-right: 15px;padding-left: 15px; ">
         <div class="bg-light border rounded shadow card" data-bss-hover-animate="pulse">
 

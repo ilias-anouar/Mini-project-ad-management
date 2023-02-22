@@ -178,7 +178,7 @@ $result = $conn->query($sql);
                   />
                 </div>
               </div>
-            </div
+              </div>
             <div class="text-center pt-1 mb-5 pb-1">
               <button class="btn w-100 btn-log-in" onclick="signUp()" type="submit" name="sign_up">
                 Sign Up

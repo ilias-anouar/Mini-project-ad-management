@@ -1,7 +1,7 @@
 <?php
 include "connect.php";
 include "clients.php";
-include 'index.php';
+// include 'index.php';
 // $deleted = $id;
 echo $id;
 
