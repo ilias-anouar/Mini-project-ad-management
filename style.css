@@ -80,7 +80,7 @@
 #slider-three {
     height: 290px;
     width: 100%;
-    background: url(image/r-architecture-wDDfbanbhl8-unsplash.jpg) center center/cover;
+    background: url(Images/imagereader11.JPG) center center/cover;
 }
 
 .type-annonce {
@@ -179,10 +179,15 @@ label span {
     transform: scale(1.1) !important;
     z-index: 2;
 }
+/* .img-card:hover {
+
+} */
 
 .wow {
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
     cursor: pointer !important;
+    width: 19rem;
+    height: 450px"
 }
 
 .wow div h2 {
@@ -250,3 +255,11 @@ div p span {
 .addAnnonce-clients {
     background-color: #0aa7cd;
 }
+
+
+
+
+
+
+
+
