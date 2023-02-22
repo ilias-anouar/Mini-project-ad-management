@@ -3,11 +3,12 @@
 <?php
     // session_start();
     include 'logIn.php'; 
-    echo $_SESSION['client_id'];
+    // $id = $_SESSION['client_id'];
+
     include 'connect.php';
 
 
-    // $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = "$_SESSION['id']" AND Is_principale = 1 ";
+    $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = "$_SESSION['client_id']" AND Is_principale = 1 ";
 
     //  LIMIT 3";
     $result = $conn->query($sql);
