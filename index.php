@@ -31,9 +31,9 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;margin: 13px;margin-top: 10px;margin-right: 20px;margin-bottom: 18px;margin-left: 43px;font-size: 23px; width: 100%; ">
                 <strong><?php echo $row['category'];?>  | <?php echo $row['price'];?> $ </strong></h5>
                 <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);"><?php echo $row['City'];?></p>
-                <button class="btn btn-danger" id="Edit" style="border: none;width: 100px;height: 38px;background: #9ecad5;" type="button" data-target="#Edit<?php echo "$ad_id" ?>">Edite</button>
-                <button class="btn btn-danger" id ="Details" style="border: none;width: 100px;height: 38px;margin-left: 14px;color: A63F04;background: #A63F04;"type="button" data-target="#Details<?php echo "$ad_id"?>">Details</button>
-                <button class="btn btn-outline-success" id="Delete" type="button" style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;" data-target="#Delete<?php echo "$ad_id" ?>">Delete</button>
+                <button class="btn btn-danger" id="Edit" style="border: none;width: 100px;height: 38px;background: #9ecad5;" type="button" data-target="#Edit<?php echo $row['ad_id'] ?>">Edite</button>
+                <button class="btn btn-danger" id ="Details" style="border: none;width: 100px;height: 38px;margin-left: 14px;color: A63F04;background: #A63F04;"type="button" data-target="#Details<?php echo $row['ad_id']?>">Details</button>
+                <button class="btn btn-outline-success" id="Delete" type="button" style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;" data-target="#Delete<?php echo $row['ad_id'] ?>">Delete</button>
                 </div>
             </div>
         </div>
