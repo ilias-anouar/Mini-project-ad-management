@@ -1,7 +1,6 @@
 <?php
     session_start();
     include 'connect.php';
-    include 'header.php'
 ?>
 <!-- Modal Log in -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -133,7 +132,7 @@
           }
         }
         if (isset($_SESSION['first_name'])) {
-          header("location: /home.php");
+          header("location: clients.php");
         }
       }
     ?>

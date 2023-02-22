@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <!-- Navbar -->
+      <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top" id="nav">
       <!-- Container wrapper -->
       <div class="container">
@@ -45,7 +45,6 @@
             style="margin-top: -1px"
           />
         </a>
-        <a href=""><?php echo $_SESSION['first_name']; ?></a>
 
         <!-- Toggle button -->
         <button
@@ -65,7 +64,10 @@
           <!-- Left links -->
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item mr-4">
-              <a class="nav-link text-white" href="#">Home</a>
+              <a class="nav-link text-white" href="home.php">Home</a>
+            </li>
+            <li class="nav-item mr-4">
+              <a class="nav-link text-white" href="clients.php">My Annonce</a>
             </li>
           </ul>
 
@@ -91,8 +93,7 @@
               <i class="fa-solid fa-user"></i>
             </a>
           </div>
-          <a href="logout.php">logout <i class="fa-solid fa-right-from-bracket"></i></a>
-  
+        <a href="logout.php">logout<i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
         <!-- Collapsible wrapper -->
       </div>
@@ -100,73 +101,52 @@
     </nav>
 
     <main>
-      <!-- ========== div serch by city and type and categories and price ==========-->
-      <div class="" id="slider-three">
-        <div id="btn-serch">
-          <div class="form-filter d-flex">
-            <form
-              action="search.php"
-              method="POST"
-              class="w-100 d-flex justify-content-center align-items-center gap-1"
-            >
-              <label for="" class="d-flex gap-1">
-                <span>city:</span>
-                <select
-                  class="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
-                  name="type"
-                >
-                  <option value="Tanger">Tanger</option>
-                  <option value="Rabat">Rabat</option>
-                  <option value="Marakech">Marakech</option>
-                  <option value="Fes">Fes</option>
-                </select>
-              </label>
-              <label for="" class="d-flex ml-1 gap-1">
-                <span>type:</span>
-                <select
-                  class="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
-                  name="type"
-                >
-                  <option value="apartment">apartment</option>
-                  <option value="House">House</option>
-                  <option value="Villa">Villa</option>
-                  <option value="desk">desk</option>
-                  <option value="ground">ground</option>
-                </select>
-              </label>
-              <label for="" class="d-flex ml-1 gap-1">
-                <span>categories:</span>
-                <select
-                  class="form-select form-select-sm"
-                  aria-label=".form-select-sm example"
-                  name="type"
-                >
-                  <option value="Rent">For Rent</option>
-                  <option value="Sale">For Sale</option>
-                </select>
-              </label>
-              <label for="" class="d-flex ml-1 gap-1" id="max-price">
-                <span>Max Price: </span>
-                <input name="max_Price" type="number" min="0" />
-              </label>
-              <label for="" class="d-flex ml-1 gap-1" id="min-Price">
-                <span>Min Price:</span>
-                <input name="min_Price" type="number" min="0" />
-              </label>
-              <button
-                name="searchbtn"
-                type="submit"
-                class="btn btn-primary ml-4"
-                id="btn-search"
-              >
-                Search
-              </button>
-            </form>
-          </div>
+    <!-- ========== div serch by city and type and categories and price ==========-->
+    <div class="" id="slider-three">
+      <div id="btn-serch">
+        <div class="form-filter d-flex">
+          <form action="search.php" method="POST" class="w-100 d-flex justify-content-center align-items-center gap-1">
+            <label for="" class="d-flex gap-1">
+              <span>city:</span>
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
+                <option value="Tanger">Tanger</option>
+                <option value="Rabat">Rabat</option>
+                <option value="Marakech">Marakech</option>
+                <option value="Fes">Fes</option>
+              </select>
+            </label>
+            <label for="" class="d-flex ml-1 gap-1">
+              <span>type:</span>
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
+                <option value="apartment">apartment</option>
+                <option value="House">House</option>
+                <option value="Villa">Villa</option>
+                <option value="desk">desk</option>
+                <option value="ground">ground</option>
+              </select>
+            </label>
+            <label for="" class="d-flex ml-1 gap-1">
+              <span>categories:</span>
+              <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
+                <option value="Rent">For Rent</option>
+                <option value="Sale">For Sale</option>
+              </select>
+            </label>
+            <label for="" class="d-flex ml-1 gap-1" id="max-price">
+              <span>Max Price: </span>
+              <input name="max_Price" type="number" min="0" />
+            </label>
+            <label for="" class="d-flex ml-1 gap-1" id="min-Price">
+              <span>Min Price:</span>
+              <input name="min_Price" type="number" min="0" />
+            </label>
+            <button name="searchbtn" type="submit" class="btn btn-primary ml-4" id="btn-search">
+              Search
+            </button>
+          </form>
         </div>
       </div>
+    </div>
       <?php
       $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
 

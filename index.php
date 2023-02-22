@@ -199,13 +199,6 @@ $result = $conn->query($sql);
     </div>
   </div>
 
-
-
-
-
-
-
-
   <main>
     <!-- ========== div serch by city and type and categories and price ==========-->
     <div class="" id="slider-three">
@@ -278,17 +271,10 @@ $result = $conn->query($sql);
     <!-- ============================================================== -->
     <!-- <div class="container mt-5  d-flex "> -->
     <div class="container mt-5 d-flex flex-wrap gap-5 justify-content-center">
-    <?php
-    
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        // echo "<pre>";
-        // var_dump($row);
-        // echo "</pre>";
-        $id = $row['ad_id'] ;
-        // echo $id;
-      
 
-    
+    <?php
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+      $id = $row['ad_id'] ;
     ?>
 
       <div class="card wow">
