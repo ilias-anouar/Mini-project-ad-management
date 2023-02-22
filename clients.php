@@ -1,6 +1,6 @@
 <?php
-// session_start();
-include 'delete.php';
+session_start();
+// include 'delete.php';
 include 'logIn.php';
 echo $_SESSION['client_id'];
 include 'connect.php';
@@ -177,7 +177,7 @@ $result = $conn->query($sql);
               data-target="#Delete">Delete</button> -->
 
               <!-- Button trigger modal -->
-            <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet">
+            <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet<?php echo $row['ad_id'] ?>">
             Delete
             </button>
 
@@ -189,7 +189,7 @@ $result = $conn->query($sql);
       
       
       <!-- Modal -->
-      <div class="modal fade" id="Delet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -199,9 +199,9 @@ $result = $conn->query($sql);
                         </button>
                       </div>
                       <div class="modal-body">
-                      <form action="delete.php?id=<?php echo $row['ad_id'] ?>" method="post">
+                      <form action="delete.php?id=<?php echo $id ?>" method="post">
                           Are you sure you want to delete Annonce <?php echo $row['title']  ?>?
-                          <p><?php echo $row['ad_id']  ?></p>
+                          <p><?php echo $id  ?></p>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

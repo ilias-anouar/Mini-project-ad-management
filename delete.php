@@ -3,6 +3,7 @@ include "connect.php";
 
 include "clients.php";
 include 'index.php';
+echo $id;
 
 // $sql = "SELECT * FROM annonce "
 $sql = "DELETE   FROM `annonce`  where 'ad_id'  = '$id'";
