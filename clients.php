@@ -199,9 +199,10 @@ $result = $conn->query($sql);
                         </button>
                       </div>
                       <div class="modal-body">
-                      <form action="delete.php?id=<?php echo $id ?>" method="post">
-                          Are you sure you want to delete Annonce <?php echo $row['title']  ?>?
+                      <form action="delete.php" method="post">
+                          Are you sure you want to delete Announce <?php echo $row['title']?>?
                           <p><?php echo $id  ?></p>
+                          <input type="hidden" value="<?php echo $row['ad_id'] ?>">
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
