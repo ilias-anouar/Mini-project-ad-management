@@ -52,7 +52,7 @@
             style="margin-top: -1px"
           />
         </a>
-        <a href=""><?php echo $_SESSION['first_name']; ?></a>
+        <a href=""><?php echo $_SESSION['client_id']; ?></a>
 
         <!-- Toggle button -->
         <button
@@ -195,8 +195,7 @@
                     <div class="card-body">
                         <div id="icon-span">
                             <p id="type-an">
-                                <?php echo  $_SESSION['client_id'];?>
-
+                                <?php echo $row['type'] ; ?>
                             </p>
                             <form action="" method="GET">
                                 <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
