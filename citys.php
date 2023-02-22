@@ -14,10 +14,10 @@ while ($city = $cites->fetch(PDO::FETCH_ASSOC)) {
 include "connect.php";
 $sql = " SELECT *  from `annonce`    where `price` between  1000 and 700000 ";
 $prices = $conn->query($sql);
-while($price=$prices->fetch(PDO::FETCH_ASSOC)){
-        echo "<pre>";
-        var_dump($price['price']);
-        echo "</pre>";
+while ($price = $prices->fetch(PDO::FETCH_ASSOC)) {
+    echo "<pre>";
+    var_dump($price['price']);
+    echo "</pre>";
 
 }
 ?>
@@ -66,14 +66,14 @@ while ($ad = $result->fetch(PDO::FETCH_ASSOC)) {
 
 <?php
 include "connect.php";
-$sql = " SELECT `title` from `annonce` " ;
+$sql = " SELECT `title` from `annonce` ";
 $titles = $conn->query($sql);
 
 while ($title = $titles->fetch(PDO::FETCH_ASSOC)) {
     echo "<pre>";
     var_dump($title);
- 
-  
+
+
     echo "</pre>";
 }
 ?>
@@ -90,8 +90,14 @@ while ($title = $titles->fetch(PDO::FETCH_ASSOC)) {
 }
 ?>
 
+<?php
+include "connect.php";
+$sql = "SELECT `image_url` FROM `image_d_annonce`";
+$images = $conn->query($sql);
 
-
-
-
-
+while ($image = $images->fetch(PDO::FETCH_ASSOC)) {
+    echo "<pre>";
+    var_dump($image);
+    echo "</pre>";
+}
+?>
