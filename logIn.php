@@ -90,7 +90,7 @@
 
 
     <?php 
-    $_SESSION['client_id'] = $row['client_id'];
+    // $_SESSION['client_id'] = $row['client_id'];
 
       if(isset($_POST['btnLogIn'])) {
         $email = $_POST['inpEmail'];
