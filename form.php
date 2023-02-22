@@ -86,7 +86,7 @@ include "header.php"
             <button name="add" type="submit" class="btn btn-primary">ADD</button>
         </div>
     </form>
-    <!-- <script>
+    <script>
 
         let i = 0;
         let addedimages = document.getElementById("inputGroupFileAddon04")
@@ -97,14 +97,14 @@ include "header.php"
             let input = document.createElement('div')
             input.innerHTML = `<div class="input-group mb-3">
     <div class="input-group-text">
-        <input class="form-check-input mt-0" type="checkbox" value="${image.value}" name="is_principal" aria-label="Checkbox for following text input">
+        <input class="form-check-input mt-0" type="Radio" value="${image.value}" name="is_principal" aria-label="Checkbox for following text input">
     </div>
     <input name='image${i}' type="text" class="form-control" aria-label="Text input with checkbox" value="${image.value}">
 </div>`;
             image.value = ""
             div.append(input);
         })
-    </script> -->
+    </script>
 </body>
 <?php
 class Announcement
