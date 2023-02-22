@@ -1,6 +1,5 @@
 <?php
 session_start();
-// include 'delete.php';
 include 'logIn.php';
 include "header.php";
 echo $_SESSION['client_id'];
@@ -132,14 +131,8 @@ $result = $conn->query($sql);
 
 
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      // echo "<pre>";
-      // var_dump($row);
-      // echo "</pre>";
       $id = $row['ad_id'];
-
       ?>
-
-
       <div class="card wow">
           <img class="card-img-top mb-3 img-card" src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
           <div class="card-body">
@@ -177,7 +170,6 @@ $result = $conn->query($sql);
 
           </div>
       </div>
-
      </div>
       <!-- Modal -->
       <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -203,10 +195,6 @@ $result = $conn->query($sql);
                     </div>
                   </div>
       </div>
-
-
-
-
            <!-- Modal Edite -->
            <div class="modal fade" id="Edit<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -220,7 +208,6 @@ $result = $conn->query($sql);
                       <div class="modal-body">
                       <form action="" method="post">
         <h2 class="fw-bold">Add advert</h2>
-
         <div class="d-flex justify-content-evenly">
             <div>
                 <div class="form-floating mb-3">
@@ -230,29 +217,23 @@ $result = $conn->query($sql);
                     <label for="floatingInput">Title</label>
                     <p><?php echo $row['ad_id'] ?>"</p>
                 </div>
-
                 <div class="form-floating mb-3">
                     <input type="text" name="city" class="form-control shadow-none" placeholder="City"
                         id="floating" value ="<?php echo $row['City']; ?>"></input>
-
                     <label for="floating">City</label>
                 </div>
-
                 <div class="form-floating mb-3">
                     <input name="country" type="text" class="form-control shadow-none" id="floating"
                         placeholder="Country" value ="<?php echo $row['Country']; ?>" ></input>
 
                     <label for="floating">Country</label>
                 </div>
-
                 <div class="form-floating mb-3">
                     <input name="date" type="date" class="form-control shadow-none" id="floating"
                         placeholder="Date"  value ="<?php echo $row['Date']; ?>" ></input>
-
                     <label for="floating">Date</label>
                 </div>
             </div>
-
             <div>
                 <div class="form-floating mb-3">
                     <input name="price" type="number" class="form-control shadow-none" id="floatingPassword"
@@ -260,34 +241,25 @@ $result = $conn->query($sql);
 
                     <label for="floatingPassword"  >Price</label>
                 </div>
-
                 <div class="form-floating mb-3">
                     <select name="type" class="form-control shadow-none" aria-label=".form-select" id="type">
                         <option value= "<?php echo $row['type']; ?>"></option>
-
                         <option value="sale">Selling</option>
-
                         <option value="rent">Renting</option>
                     </select>
-
                     <label for="Type">Type</label>
                 </div>
-
                 <div class="form-floating mb-3">
                     <select name="Category" class="form-control shadow-none" aria-label=".form-select" id="Category">
                         <option value="<?php echo $row['Category']; ?>"></option>
-
                         <option value="apartment">Apartment</option>
-
                         <option value="house">House</option>
                         <option value="villa">Villa</option>
                         <option value="office">Office</option>
                         <option value="land">land</option>
                     </select>
-
                     <label for="Category">Category</label>
                 </div>
-
                 <div class="input-group mb-3">
                     <input type="file" id="Image" class="form-control" id="inputGroupFile04"
                         aria-describedby="inputGroupFileAddon04" aria-label="Upload">
@@ -297,7 +269,6 @@ $result = $conn->query($sql);
                 </div>
             </div>
         </div>
-
         <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
             <button name="add" type="submit" class="btn btn-primary">ADD</button>
         </div>
