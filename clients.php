@@ -2,6 +2,7 @@
 session_start();
 // include 'delete.php';
 include 'logIn.php';
+include "header.php";
 echo $_SESSION['client_id'];
 include 'connect.php';
 $client_id = $_SESSION['client_id'];
@@ -139,18 +140,14 @@ $result = $conn->query($sql);
       ?>
 
 
-      <div class="card wow"
-        style="padding-top: 15px;padding-bottom: 15px;padding-right: 15px;padding-left: 15px; ">
-        <div class="bg-light border rounded shadow card" data-bss-hover-animate="pulse">
-
-          <img class="card-img-top mb-3" src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>"
-            width="400" height="278">
+      <div class="card wow">
+          <img class="card-img-top mb-3 img-card" src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
           <div class="card-body">
             <div id="icon-span">
               <p id="type-an">
                 <?php echo $row['type']; ?>
               </p>
-              <form action="" method="GET">
+              <form action="" method="POST">
                 <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
               </form>
             </div>
@@ -167,27 +164,21 @@ $result = $conn->query($sql);
             <p class="card-text" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
               <?php echo $row['City']; ?>
             </p>
-            <button class="btn btn-danger" id="Edit" style="border: none;width: 100px;height: 38px;background: #9ecad5;"
-              type="button" data-target="#Edit<?php echo $row['ad_id'] ?>">Edite</button>
+            <button type="button" class=" btn btn-outline-success"  style="border: none;width: 100px;height: 38px;background: #9ecad5;" data-toggle="modal" data-target="#Edit<?php echo $row['ad_id'] ?>">
+            Edit
+            </button>
             <button class=" btn btn-danger" id="Details"
               style="border: none;width: 100px;height: 38px;margin-left: 14px;color: #fff;background: #A63F04;"
               type="button" data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
-            <!-- <button class=" btn btn-outline-success"  type="button"
-              style="font-weight: normal;font-family: Antic, sans-serif;width: 100px;margin: 22px;"
-              data-target="#Delete">Delete</button> -->
-
               <!-- Button trigger modal -->
             <button type="button" class=" btn btn-outline-success" data-toggle="modal" data-target="#Delet<?php echo $row['ad_id'] ?>">
             Delete
             </button>
 
           </div>
-        </div>
       </div>
 
-      </div>
-      
-      
+     </div>
       <!-- Modal -->
       <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
@@ -203,6 +194,113 @@ $result = $conn->query($sql);
                           Are you sure you want to delete Announce <?php echo $row['title']?>?
                           <p><?php echo $id  ?></p>
                           <input type="hidden" value="<?php echo $row['ad_id'] ?>">
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button  class="btn btn-danger" name="delete">Delete</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+      </div>
+
+
+
+
+           <!-- Modal Edite -->
+           <div class="modal fade" id="Edit<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Delete Annonce</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                      <form action="" method="post">
+        <h2 class="fw-bold">Add advert</h2>
+
+        <div class="d-flex justify-content-evenly">
+            <div>
+                <div class="form-floating mb-3">
+                    <input name="title" type="text" class="form-control shadow-none" id="floatingInput"
+                        placeholder="Title"  value = "<?php echo $row['title']; ?>"></input>
+
+                    <label for="floatingInput">Title</label>
+                    <p><?php echo $row['ad_id'] ?>"</p>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="text" name="city" class="form-control shadow-none" placeholder="City"
+                        id="floating" value ="<?php echo $row['City']; ?>"></input>
+
+                    <label for="floating">City</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input name="country" type="text" class="form-control shadow-none" id="floating"
+                        placeholder="Country" value ="<?php echo $row['Country']; ?>" ></input>
+
+                    <label for="floating">Country</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input name="date" type="date" class="form-control shadow-none" id="floating"
+                        placeholder="Date"  value ="<?php echo $row['Date']; ?>" ></input>
+
+                    <label for="floating">Date</label>
+                </div>
+            </div>
+
+            <div>
+                <div class="form-floating mb-3">
+                    <input name="price" type="number" class="form-control shadow-none" id="floatingPassword"
+                        placeholder="Price" value = "<?php echo $row['Price']; ?>" ></input>
+
+                    <label for="floatingPassword"  >Price</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select name="type" class="form-control shadow-none" aria-label=".form-select" id="type">
+                        <option value= "<?php echo $row['type']; ?>"></option>
+
+                        <option value="sale">Selling</option>
+
+                        <option value="rent">Renting</option>
+                    </select>
+
+                    <label for="Type">Type</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <select name="Category" class="form-control shadow-none" aria-label=".form-select" id="Category">
+                        <option value="<?php echo $row['Category']; ?>"></option>
+
+                        <option value="apartment">Apartment</option>
+
+                        <option value="house">House</option>
+                        <option value="villa">Villa</option>
+                        <option value="office">Office</option>
+                        <option value="land">land</option>
+                    </select>
+
+                    <label for="Category">Category</label>
+                </div>
+
+                <div class="input-group mb-3">
+                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
+                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                </div>
+                <div id="upload">
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
+            <button name="add" type="submit" class="btn btn-primary">ADD</button>
+        </div>
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
