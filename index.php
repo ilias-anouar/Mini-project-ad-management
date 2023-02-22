@@ -5,15 +5,21 @@ include "connect.php";
 
 include "component.php";
 
-$sql = "SELECT * FROM annonce LIMIT 3";
+// $sql = "SELECT * FROM annonce "
+$sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
+
+//  LIMIT 3";
 $result = $conn->query($sql);
 
 
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-  echo $row['title'];
+  echo "<pre>";
+  var_dump($row);
+  echo "</pre>";
+
 
   ?>
-  <div>
+    <div>
 
 <div class="container">
 <div class="col-auto col-sm-12 col-md-12 col-lg-4 col-xl-4" style="padding-top: 15px;padding-bottom: 15px;padding-right: 15px;padding-left: 15px;">
@@ -39,17 +45,3 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
 
 $pdo = null;
 ?>
-
-component($row['title'], $row['category'], $row['price'], $row['type'], $row['ad_id']);
-<?php
-
-
-$sql = "SELECT * FROM image_d_annonce WHERE is_principale = 1";
-$result = $conn->query($sql);
-
-
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-  echo $row['image_url'];
-}
-  ?>
-  <div>
