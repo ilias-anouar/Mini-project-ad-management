@@ -7,8 +7,6 @@ include "logIn.php";
 include "header.php";
 // $sql = "SELECT * FROM annonce "
 $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
-
-//  LIMIT 3";
 $result = $conn->query($sql);
 
 
