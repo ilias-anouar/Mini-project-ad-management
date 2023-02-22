@@ -340,6 +340,9 @@ include 'connect.php';
       </div>
     </div>
   </div>
+  <?php
+    };
+  ?>
   <!-- ====== MODAL MOR INFO ============== -->
   <div class="modal fade bd-example-modal-lg" id="btn-morInfo" tabindex="-1" role="dialog"
     aria-labelledby="myLargeModalLabel" aria-hidden="true">
