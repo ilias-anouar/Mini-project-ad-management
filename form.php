@@ -53,7 +53,7 @@ include "header.php"
                     <label for="Category">Category</label>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
+                    <input type="file" id="Image" class="form-control" 
                         aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                     <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
                 </div>
