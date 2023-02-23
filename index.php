@@ -1,13 +1,11 @@
 <?php
-// include_once "./component.php";
-include "connect.php";
-
-include "component.php";
-include "logIn.php";
-include "header.php";
-// $sql = "SELECT * FROM annonce "
-$sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
-$result = $conn->query($sql);
+  include "connect.php";
+  include "logIn.php";
+  include "component.php";
+  include "header.php";
+  // $sql = "SELECT * FROM annonce "
+  $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
+  $result = $conn->query($sql);
 ?>
 <nav class="navbar navbar-expand-lg fixed-top" id="nav">
   <!-- Container wrapper -->
@@ -174,9 +172,9 @@ $result = $conn->query($sql);
   <!-- ============================================================== -->
   <div class="container mt-5 d-flex flex-wrap gap-5 justify-content-center">
     <?php
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       $id = $row['ad_id'];
-      ?>
+    ?>
       <div class="card wow">
         <img class="card-img-top mb-3 img-card"
           src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
@@ -207,10 +205,9 @@ $result = $conn->query($sql);
             data-target="#Details<?php echo $id ?>">Details</button>
         </div>
       </div>
-      <?php
-    }
-    ;
-    $pdo = null;
+    <?php
+      };
+      $pdo = null;
     ?>
 </main>
 <!-- ============ footer ================= -->

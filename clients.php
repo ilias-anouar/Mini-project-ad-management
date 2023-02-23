@@ -1,65 +1,45 @@
 <?php
-session_start();
-include 'logIn.php';
-echo $_SESSION['client_id'];
-// include "header.php";
-include 'connect.php';
-$client_id = $_SESSION['client_id'];
-$sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
+  include 'logIn.php';
+  include 'connect.php';
 
-$result = $conn->query($sql);
-
+  $client_id = $_SESSION['client_id'];
+  $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
+  $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ad management</title>
-  <!-- link bootstrap -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-  <!-- link font awesome library -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- link CSS -->
-  <link rel="stylesheet" href="styles.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ad management</title>
+    <!-- link bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
+    <!-- link font awesome library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- link CSS -->
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top" id="nav">
-    <!-- Container wrapper -->
-    <div class="container">
-      <!-- Navbar brand -->
-      <a class="navbar-brand me-2" href="https://mdbgo.com/">
-        <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" />
-      </a>
-      <a href="">
-        <?php echo $_SESSION['client_id']; ?>
-      </a>
-      <a href="home.php">Home</a>
-
-
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg fixed-top" id="nav">
         <!-- Container wrapper -->
         <div class="container">
           <!-- Navbar brand -->
           <a class="navbar-brand me-2" href="https://mdbgo.com/">
-            <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" />
+            <!-- <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" /> -->
           </a>
-
           <!-- Toggle button -->
           <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false"
             aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
           </button>
-
           <!-- Collapsible wrapper -->
           <div class="collapse navbar-collapse" id="navbarButtonsExample">
             <!-- Left links -->
@@ -68,10 +48,9 @@ $result = $conn->query($sql);
                 <a class="nav-link text-white" href="home.php">Home</a>
               </li>
               <li class="nav-item mr-4">
-                <a class="nav-link text-white" href="clients.php">My Annonce</a>
+                <a class="nav-link text-warning" href="clients.php">My Annonce</a>
               </li>
             </ul>
-
             <!-- Button SIGN UP -->
             <button type="button" class="btn me-3 btn-success" id="btn-addAnnonce" data-toggle="modal"
               data-target="#addAnnonceModal">
@@ -95,12 +74,16 @@ $result = $conn->query($sql);
 
       <main>
         <!-- ========== div serch by city and type and categories and price ==========-->
-        <!-- <div class="" id="slider-three"> -->
+        <div class="" id="slider-three">
+        </div>
+
+        <!--=============== show cards ================ -->
         <div class="container mt-5 d-flex flex-wrap gap-5 justify-content-center">
 
           <?php
-          while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+          ?>
+
             <div class="card wow">
               <img class="card-img-top mb-3 img-card"
                 src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
@@ -145,7 +128,7 @@ $result = $conn->query($sql);
               </div>
             </div>
 
-          </div>
+
           <!-- Modal -->
           <div class="modal fade" id="Delet<?php echo $row['ad_id'] ?>" tabindex="-1" role="dialog"
             aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -174,6 +157,7 @@ $result = $conn->query($sql);
               </div>
             </div>
           </div>
+          
           <?php
           if (isset($_POST["Details"])) {
 

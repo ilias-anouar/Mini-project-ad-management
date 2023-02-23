@@ -61,42 +61,40 @@ include 'header.php'
   </div>
 </div>
 <?php
+
+
+
 // $_SESSION['client_id'] = $row['client_id'];
 if (isset($_POST['btnLogIn'])) {
-  $email = $_POST['inpEmail'];
   $pass = $_POST['inpPassword'];
-  if (empty($email) || empty($pass)) {
+  $email = $_POST['inpEmail'];
+  if (empty($email) && empty($pass)) {
     // echo '<span style = color:red;>champ Obligatoire</span>';
-    echo 'swal({
+    echo '<script>swal({
               title: "Good job!",
               text: "You clicked the button!",
               icon: "warning",
               button: "Aww yiss!",
-            });';
+            });</script>';
   } else {
-    $select = $conn->query("SELECT * FROM client WHERE email = '$email' && password = '$pass'");
+    $select = $conn->query("SELECT * FROM client WHERE email = '$email'");
     $row = $select->fetch();
+    print_r($row);
     if (is_array($row)) {
-      $_SESSION['first_name'] = $row['first_name'];
-      $_SESSION['last_name'] = $row['last_name'];
-      $_SESSION['pass'] = $row['password'];
-      $_SESSION['client_id'] = $row['client_id'];
-      header("location: clients.php");
-    } else {
-      echo '<script type="text/javascript">';
-      echo 'swal({
-              title: "Good job!",
-              text: "You clicked the button!",
-              icon: "warning",
-              button: "Aww yiss!",
-            });';
-      //   echo 'window.lcation.href = ""';
-      echo '</script>';
+      if (password_verify($_POST['inpPassword'], $row['password'])){
+        echo 'hello world'. $row['first_name'];
+
+        $_SESSION['first_name'] = $row['first_name'];
+        $_SESSION['last_name'] = $row['last_name'];
+        $_SESSION['pass'] = $row['password'];
+        $_SESSION['client_id'] = $row['client_id'];
+        header("location: clients.php");
+      }
     }
   }
-  if (isset($_SESSION['first_name'])) {
-    header("location: home.php");
-  }
+  // if (isset($_SESSION['first_name'])) {
+  //   header("location: clients.php");
+  // }
 }
 ?>
 
