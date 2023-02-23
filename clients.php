@@ -1,30 +1,15 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
   include 'logIn.php';
   include 'connect.php';
+  include "header.php";
+
 
   $client_id = $_SESSION['client_id'];
   $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
   $result = $conn->query($sql);
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
 
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ad management</title>
-    <!-- link bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
-    <!-- link font awesome library -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-      integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- link CSS -->
-    <link rel="stylesheet" href="styles.css" />
-  </head>
 
 <body>
       <!-- Navbar -->
@@ -72,6 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         <!-- Container wrapper -->
       </nav>
+      
 
       <main>
         <!-- ========== div serch by city and type and categories and price ==========-->
@@ -170,10 +156,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               echo "<pre>";
               var_dump($row);
               echo "</pre>";
-
             }
-          }
-          ;
+          };
           ?>
 
 
@@ -415,11 +399,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <!-- link JS -->
       <script src="script.js"></script>
-  <?php
-    }else {
-      header('location: index.php');
-    }
-  ?>
 </body>
 
 </html>
