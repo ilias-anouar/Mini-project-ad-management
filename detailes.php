@@ -2,17 +2,7 @@
 include "header.php";
 include "connect.php";
 $id = $_POST["detailesID"];
-// $sql = "START TRANSACTION;
-// SELECT * FROM `annonce` WHERE `ad_id` = $id;
-// SELECT * FROM `image_d_annonce` WHERE `ad_id` = $id;
-// COMMIT";
-// $sql = "SELECT * FROM `annonce` LEFT JOIN `image_d_annonce`  where   ad_id = '$id'";
-// $result = $conn->query($sql);
-// while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-//     echo "<pre>";
-//     var_dump($row);
-//     echo "</pre>";
-// }
+
 $conn->beginTransaction();
 
 // prepare and execute the first SELECT query
