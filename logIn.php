@@ -95,7 +95,7 @@ if (isset($_POST['btnLogIn'])) {
     }
   }
   if (isset($_SESSION['first_name'])) {
-    header("location: /home.php");
+    header("location: home.php");
   }
 }
 ?>
