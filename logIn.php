@@ -1,8 +1,7 @@
 <?php
 session_start();
 include 'connect.php';
-include 'header.php'
-  ?>
+?>
 <!-- Modal Log in -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -65,37 +64,44 @@ include 'header.php'
 
 
 // $_SESSION['client_id'] = $row['client_id'];
-if (isset($_POST['btnLogIn'])) {
-  $pass = $_POST['inpPassword'];
-  $email = $_POST['inpEmail'];
-  if (empty($email) && empty($pass)) {
-    // echo '<span style = color:red;>champ Obligatoire</span>';
-    echo '<script>swal({
-              title: "Good job!",
-              text: "You clicked the button!",
-              icon: "warning",
-              button: "Aww yiss!",
-            });</script>';
-  } else {
-    $select = $conn->query("SELECT * FROM client WHERE email = '$email'");
-    $row = $select->fetch();
-    print_r($row);
-    if (is_array($row)) {
-      if (password_verify($_POST['inpPassword'], $row['password'])){
-        echo 'hello world'. $row['first_name'];
+// if ($_SERVER["REQUEST_METHOD"] === "GET") {
 
-        $_SESSION['first_name'] = $row['first_name'];
-        $_SESSION['last_name'] = $row['last_name'];
-        $_SESSION['pass'] = $row['password'];
-        $_SESSION['client_id'] = $row['client_id'];
-        header("location: clients.php");
+  if (isset($_POST['btnLogIn'])) {
+    $pass = $_POST['inpPassword'];
+    $email = $_POST['inpEmail'];
+    if (empty($email) && empty($pass)) {
+      // echo '<span style = color:red;>champ Obligatoire</span>';
+      echo '<script>swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                icon: "warning",
+                button: "Aww yiss!",
+              });</script>';
+    } else {
+      $select = $conn->query("SELECT * FROM client WHERE email = '$email'");
+      $row = $select->fetch();
+      print_r($row);
+      if (is_array($row)) {
+        if (password_verify($_POST['inpPassword'], $row['password'])){
+  
+          header("Location: clients.php");
+  
+  
+          $_SESSION['first_name'] = $row['first_name'];
+          $_SESSION['last_name'] = $row['last_name'];
+          $_SESSION['pass'] = $row['password'];
+          $_SESSION['client_id'] = $row['client_id'];
+  
+        }
       }
     }
+    // if (isset($_SESSION['first_name'])) {
+    //   header("location: clients.php");
+    // }
   }
-  // if (isset($_SESSION['first_name'])) {
-  //   header("location: clients.php");
-  // }
-}
+//    else {
+//   header('location: index.php');
+// }
 ?>
 
 

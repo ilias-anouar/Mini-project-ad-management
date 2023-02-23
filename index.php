@@ -200,7 +200,7 @@
           <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
             <?php echo $row['City']; ?>
           </p>
-          <button class="btn btn-danger" id="Details"
+          <button class="btn btn-danger w-100 d-flex text-center justify-content-center" id="Details"
             style="border: none;width: 100px;height: 38px;margin-left: 14px;background: #A63F04;" type="button"
             data-target="#Details<?php echo $id ?>">Details</button>
         </div>
@@ -256,6 +256,6 @@
 <!-- librarry JS sweetalert -->
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- link JS -->
-<!-- <script src="script.js"></script> -->
+<script src="script.js"></script>
 </body>
 </html>

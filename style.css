@@ -166,13 +166,13 @@ label span {
 
 #btn-search {
     height: 36px;
-    background-color: #f7ce50;
+    background-color: #0aa7cd;
     border: none;
     font-weight: 600;
 }
 
 #btn-search:hover {
-    background-color: #093c71;
+    background-color: #931111;
 }
 
 /* =========== style cards================ */
