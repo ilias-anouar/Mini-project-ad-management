@@ -1,4 +1,5 @@
 <?php
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
   include 'logIn.php';
   include 'connect.php';
 
@@ -414,6 +415,11 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <!-- link JS -->
       <script src="script.js"></script>
+  <?php
+    }else {
+      header('location: index.php');
+    }
+  ?>
 </body>
 
 </html>
