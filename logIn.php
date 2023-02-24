@@ -91,9 +91,23 @@ include 'connect.php';
           $_SESSION['last_name'] = $row['last_name'];
           $_SESSION['pass'] = $row['password'];
           $_SESSION['client_id'] = $row['client_id'];
+          echo $_SESSION['client_id'];
   
-        }
-      }
+        }       echo '<script>swal({
+          title: "password not coreect",
+          text: "You clicked the button!",
+          icon: "warning",
+          button: "Aww yiss!",
+        });</script>';
+      } else {
+              echo '<script>swal({
+        title: "emailnot correct",
+        text: "You clicked the button!",
+        icon: "warning",
+        button: "Aww yiss!",
+      });</script>';
+      }       
+
     }
     // if (isset($_SESSION['first_name'])) {
     //   header("location: clients.php");

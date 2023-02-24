@@ -1,5 +1,6 @@
 <?php
 include "connect.php";
+include "clients.php";
 $id = $_POST['id'];
 echo $id;
 $sql = "START TRANSACTION;

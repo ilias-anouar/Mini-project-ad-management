@@ -1,8 +1,8 @@
 <?php
-  include 'logIn.php';
+  // include 'logIn.php';
+  session_start();
   include 'connect.php';
   include "header.php";
-
 
   $client_id = $_SESSION['client_id'];
   $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
@@ -40,18 +40,31 @@
             <!-- Button SIGN UP -->
             <button type="button" class="btn me-3 btn-success" id="btn-addAnnonce" data-toggle="modal"
               data-target="#addAnnonceModal">
-              <span>Add annonce</span> <i class="fa-solid fa-plus"></i>
+              <a href="form.php"><span>Add annonce</span> <i class="fa-solid fa-plus"></i></a>
             </button>
             <!-- button LOG IN -->
-            <div class="d-flex align-items-center">
+            <!-- <div class="d-flex align-items-center">
               <a type="button" class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
                 data-toggle="modal" data-target="#btn">
                 Profile
                 <i class="fa-solid fa-user"></i>
               </a>
+            </div> -->
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="" alt="" srcset="images/bighouse.jpg" style="width: 30px; height: 30px;border-radius: 50%;">
+                Profile
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">profile</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a href="logout.php" class="dropdown-item">
+                  logout
+                  <iclass="fa-solid fa-right-from-bracket"></iclass=>
+                </a>
+              </div>
             </div>
-            <a href="logout.php" class="nav-link disabled text-light">logout<i
-                class="fa-solid fa-right-from-bracket"></i></a>
+
           </div>
           <!-- Collapsible wrapper -->
         </div>
@@ -69,6 +82,7 @@
 
           <?php
             while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+              $id = $row['ad_id'];
           ?>
 
             <div class="card wow">
