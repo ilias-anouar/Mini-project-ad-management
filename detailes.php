@@ -23,6 +23,15 @@ $result2 = $stmt2->fetchAll(PDO::FETCH_ASSOC);
 $conn->commit();
 
 // display the results
+echo '<h1>Results from `image_d_annonce` table:</h1>';
+foreach ($result2 as $row) {
+    echo '<p>';
+    foreach ($row as $column => $value) {
+        echo $column . ': ' . $value . '<br>';
+    }
+    echo '</p>';
+}
+
 echo '<h1>Results from `annonce` table:</h1>';
 foreach ($result1 as $row) {
     echo '<p>';
@@ -32,13 +41,5 @@ foreach ($result1 as $row) {
     echo '</p>';
 }
 
-echo '<h1>Results from `image_d_annonce` table:</h1>';
-foreach ($result2 as $row) {
-    echo '<p>';
-    foreach ($row as $column => $value) {
-        echo $column . ': ' . $value . '<br>';
-    }
-    echo '</p>';
-}
 
 ?>
