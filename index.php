@@ -92,7 +92,8 @@
                 <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="phonNumber" required />
               </div>
             </div>
-          </div <div class="row">
+</div>
+           <div class="row">
           <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
               <label class="form-label" for="emailAddress">Password:</label>
@@ -102,7 +103,7 @@
           <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
               <label class="form-label" for="phoneNumber">confirm password:</label>
-              <input type="password" id="phoneNumber" namee="confirmPassword" class="form-control form-control-lg"
+              <input type="password" id="phoneNumber" name="confirmPassword" class="form-control form-control-lg"
                 required />
             </div>
           </div>
