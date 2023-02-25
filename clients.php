@@ -56,7 +56,7 @@
                 Profile
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">profile</a>
+                <a class="dropdown-item" href="profile.php">profile</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a href="logout.php" class="dropdown-item">
                   logout
