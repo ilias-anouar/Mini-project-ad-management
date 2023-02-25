@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
 
-body {
+
+body{margin-top:20px;
     font-family: 'Roboto', sans-serif;
-}
+    background-color:#f2f6fc;
+    color:#69707a;
+    }
 
 
 #lorem {
@@ -197,12 +200,12 @@ label span {
     height: 450px"
 }
 
-.wow div h2 {
+/* .wow div h2 {
     /* position: absolute;
     left: 58%;
     top: 68%; */
-    color: #f7ce50;
-}
+    /* color: #f7ce50; */
+/* }  */
 
 
 /* ======== modal sign in =========== */
@@ -212,9 +215,9 @@ label span {
     font-weight: 700;
 }
 
-.btn-log-in:hover {
+/* .btn-log-in:hover {
     background-color: #f7ce50;
-}
+} */
 
 
 /* ===================== style page clients ======================== */
