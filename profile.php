@@ -70,6 +70,7 @@ $row = $select->fetch();
         </div>
         <!-- Container wrapper -->
       </nav>
+      
     <!-- body profile  -->
     <div class="container-xl px-4 mt-5 pt-5">
         <hr class="mt-0 mb-4">
