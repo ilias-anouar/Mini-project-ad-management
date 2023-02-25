@@ -50,7 +50,7 @@
   <!-- Container wrapper -->
 </nav>
 <!-- Modal Sign up -->
-<div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+< class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -92,29 +92,29 @@
                 <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="phonNumber" required />
               </div>
             </div>
-</div>
-           <div class="row">
-          <div class="col-md-6 mb-4 pb-2">
+          </div>
+          <div class="row">
+           <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
               <label class="form-label" for="emailAddress">Password:</label>
               <input type="password" id="emailAddress" class="form-control form-control-lg" name="password" required />
             </div>
-          </div>
-          <div class="col-md-6 mb-4 pb-2">
+           </div>
+           <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
               <label class="form-label" for="phoneNumber">confirm password:</label>
               <input type="password" id="phoneNumber" name="confirmPassword" class="form-control form-control-lg"
                 required />
             </div>
+           </div>
           </div>
+          <div class="text-center pt-1 mb-5 pb-1">
+            <button class="btn w-100 btn-log-in" onclick="signUp()" type="submit" name="sign_up">
+              Sign Up
+            </button>
+          </div>
+        </form>
       </div>
-      <div class="text-center pt-1 mb-5 pb-1">
-        <button class="btn w-100 btn-log-in" onclick="signUp()" type="submit" name="sign_up">
-          Sign Up
-        </button>
-      </div>
-      </form>
-    </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal">
         Close
@@ -122,7 +122,7 @@
     </div>
   </div>
 </div>
-</div>
+
 <main>
   <!-- ========== div serch by city and type and categories and price ==========-->
   <div class="" id="slider-three">

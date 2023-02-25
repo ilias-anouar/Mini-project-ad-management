@@ -149,6 +149,7 @@ if (isset($_POST["add"])) {
     //     $client_id = $client_id['client_id'];
     // }
     $client_id = $_SESSION['client_id'];
+    
     $sql = "INSERT INTO `annonce`(`ad_id`, `title`, `price`, `publication_date`, `last_modification_date`, `address`, `City`, `Contry`, `category`, `type`, `client_id`) VALUES (null,'$ad->title','$ad->price','$ad->publication_date',NOW(),'$ad->City,$ad->Country','$ad->City','$ad->Country','$ad->category','$ad->type','$client_id')";
     $conn->exec($sql);
     $last_id = $conn->lastInsertId();
