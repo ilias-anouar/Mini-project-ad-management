@@ -2,7 +2,6 @@
 session_start();
 include "header.php"
     ?>
-
 <body>
     <form class="text-center" method="post">
         <h2 class="fw-bold">Add advert</h2>

@@ -18,8 +18,6 @@ include 'connect.php';
             <div class="row g-0">
               <div class="card-body">
                 <div class="text-center">
-                  <img src="image/Real_Estate_logo_-_Fait_avec_PosterMyWall__1_-removebg-preview.png"
-                    style="width: 185px" alt="logo" />
                   <h4 class="">Enter in Your Account</h4>
                 </div>
                 <form method="POST" action="index.php">

@@ -43,7 +43,6 @@ body{margin-top:20px;
 
 #type-an {
     color: #fff;
-    margin-left: 15%;
     margin-top: 25%;
     font-style: oblique;
 }
@@ -90,7 +89,9 @@ body{margin-top:20px;
 #slider-three {
     height: 290px;
     width: 100%;
-    background: url(Images/imagereader11.JPG) center center/cover;
+    background-image: url(Images/imagereader11.JPG);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .type-annonce {

@@ -9,10 +9,6 @@
       <nav class="navbar navbar-expand-lg fixed-top" id="nav">
         <!-- Container wrapper -->
         <div class="container">
-          <!-- Navbar brand -->
-          <a class="navbar-brand me-2" href="https://mdbgo.com/">
-            <!-- <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" /> -->
-          </a>
           <!-- Toggle button -->
           <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
             data-mdb-target="#navbarButtonsExample" aria-controls="navbarButtonsExample" aria-expanded="false"
@@ -35,14 +31,6 @@
               data-target="#addAnnonceModal">
               <span>Add annonce</span> <i class="fa-solid fa-plus"></i>
             </button>
-            <!-- button LOG IN -->
-            <!-- <div class="d-flex align-items-center">
-              <a type="button" class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
-                data-toggle="modal" data-target="#btn">
-                Profile
-                <i class="fa-solid fa-user"></i>
-              </a>
-            </div> -->
             <div class="dropdown">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <img src="" alt="" srcset="images/bighouse.jpg" style="width: 30px; height: 30px;border-radius: 50%;">
@@ -53,7 +41,7 @@
                 <a class="dropdown-item" href="#">Another action</a>
                 <a href="logout.php" class="dropdown-item">
                   logout
-                  <iclass="fa-solid fa-right-from-bracket"></iclass=>
+                  <i class="fa-solid fa-right-from-bracket"></i>
                 </a>
               </div>
             </div>

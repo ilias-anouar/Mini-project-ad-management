@@ -1,23 +1,12 @@
 <?php
 session_start();
 include "connect.php";
-// include "logIn.php";
-include "component.php";
 include "header.php";
 // $sql = "SELECT * FROM annonce "
 $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
 $result = $conn->query($sql);
 ?>
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ad management</title>
-    <!-- link bootstrap -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" />
 <!-- link font awesome library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
@@ -52,19 +41,6 @@ $result = $conn->query($sql);
             <a class="nav-link text-white" href="clients.php">My Annonce</a>
           </li>
         </ul>
-        <!-- Button SIGN UP -->
-        <!-- <button type="button" class="btn me-3 btn-success" id="btn-addAnnonce" data-toggle="modal"
-              data-target="#addAnnonceModal">
-              <a href="form.php"><span>Add annonce</span> <i class="fa-solid fa-plus"></i></a>
-            </button> -->
-        <!-- button LOG IN -->
-        <!-- <div class="d-flex align-items-center">
-              <a type="button" class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
-                data-toggle="modal" data-target="#btn">
-                Profile
-                <i class="fa-solid fa-user"></i>
-              </a>
-            </div> -->
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">

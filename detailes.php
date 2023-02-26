@@ -43,36 +43,13 @@ foreach ($result2 as $row) {
                 <li class="nav-item mr-4">
                     <a class="nav-link text-warning" href="home.php">Home</a>
                 </li>
-                <li class="nav-item mr-4">
-                    <a class="nav-link text-white" href="clients.php">My Annonce</a>
-                </li>
             </ul>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src="" alt="" srcset="images/bighouse.jpg"
-                        style="width: 30px; height: 30px;border-radius: 50%;">
-                    Profile
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="profile.php">profile</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a href="logout.php" class="dropdown-item">
-                        logout
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </a>
-                </div>
-            </div>
-
         </div>
-        <!-- Collapsible wrapper -->
     </div>
-    <!-- Container wrapper -->
 </nav>
 <!-- Slideshow container -->
-<div class="d-flex">
+<div class="d-flex gap-5">
     <div class="slideshow-container">
-
         <!-- Full-width images with number and caption text -->
         <div class="mySlides">
             <div class="numbertext">1 / 5</div>
@@ -109,8 +86,8 @@ foreach ($result2 as $row) {
         .slideshow-container {
             max-width: 1000px;
             position: relative;
-            margin: auto;
-            margin-top: 4em;
+            margin-top: 6em;
+            margin-left: 2em;
         }
 
         /* Hide the images by default */
@@ -126,12 +103,14 @@ foreach ($result2 as $row) {
             position: absolute;
             top: 0;
         }
+        .mt-7{
+            margin-top: 6em;
+        }
     </style>
 
     <script>
         let slideIndex = 0;
         showSlides();
-
         function showSlides() {
             let i;
             let slides = document.getElementsByClassName("mySlides");
@@ -144,7 +123,7 @@ foreach ($result2 as $row) {
             setTimeout(showSlides, 3000); // Change image every 3 seconds
         }
     </script>
-    <div>
+    <div class="mt-7">
         <h1>
             <?php echo $result1[0]['title'] ?>
         </h1>

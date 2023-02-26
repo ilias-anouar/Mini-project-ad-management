@@ -1,19 +1,16 @@
 <?php
-  include "connect.php";
-  include "logIn.php";
-  include "component.php";
-  include "header.php";
-  // $sql = "SELECT * FROM annonce "
-  $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
-  $result = $conn->query($sql);
+include "connect.php";
+include "logIn.php";
+include "header.php";
+include "search.php";
+$city = "SELECT DISTINCT `City` FROM `annonce`";
+// $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
+$result = $conn->query($sql);
+$citys = $conn->query($city);
 ?>
 <nav class="navbar navbar-expand-lg fixed-top" id="nav">
   <!-- Container wrapper -->
   <div class="container">
-    <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="https://mdbgo.com/">
-      <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" />
-    </a>
     <!-- Toggle button -->
     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
       aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,7 +31,7 @@
         <span>Sign Up</span>
         <i class="fa-solid fa-user-plus"></i>
       </button>
-      </button> -->
+      </button>
       <!-- button LOG IN -->
       <div class="d-flex align-items-center">
         <!-- Button trigger modal -->
@@ -42,12 +39,10 @@
           data-bs-toggle="modal" data-bs-target="#exampleModal">
           Log In <i class="fa-solid fa-user"></i>
         </button>
-        </a> -->
+        </a>
       </div>
     </div>
-    <!-- Collapsible wrapper -->
   </div>
-  <!-- Container wrapper -->
 </nav>
 <!-- Modal Sign up -->
 <div class="modal fade" id="signUp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -94,34 +89,35 @@
             </div>
           </div>
           <div class="row">
-          <div class="col-md-6 mb-4 pb-2">
-            <div class="form-outline">
-              <label class="form-label" for="emailAddress">Password:</label>
-              <input type="password" id="emailAddress" class="form-control form-control-lg" name="password" required />
+            <div class="col-md-6 mb-4 pb-2">
+              <div class="form-outline">
+                <label class="form-label" for="emailAddress">Password:</label>
+                <input type="password" id="emailAddress" class="form-control form-control-lg" name="password"
+                  required />
+              </div>
+            </div>
+            <div class="col-md-6 mb-4 pb-2">
+              <div class="form-outline">
+                <label class="form-label" for="phoneNumber">confirm password:</label>
+                <input type="password" id="phoneNumber" namee="confirmPassword" class="form-control form-control-lg"
+                  required />
+              </div>
             </div>
           </div>
-          <div class="col-md-6 mb-4 pb-2">
-            <div class="form-outline">
-              <label class="form-label" for="phoneNumber">confirm password:</label>
-              <input type="password" id="phoneNumber" namee="confirmPassword" class="form-control form-control-lg"
-                required />
-            </div>
+          <div class="text-center pt-1 mb-5 pb-1">
+            <button class="btn w-100 btn-log-in" onclick="signUp()" type="submit" name="sign_up">
+              Sign Up
+            </button>
           </div>
+        </form>
       </div>
-      <div class="text-center pt-1 mb-5 pb-1">
-        <button class="btn w-100 btn-log-in" onclick="signUp()" type="submit" name="sign_up">
-          Sign Up
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
         </button>
       </div>
-      </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">
-        Close
-      </button>
     </div>
   </div>
-</div>
 </div>
 <main>
   <!-- ========== div serch by city and type and categories and price ==========-->
@@ -131,28 +127,34 @@
         <form action="search.php" method="POST" class="w-100 d-flex justify-content-center align-items-center gap-1">
           <label for="" class="d-flex gap-1">
             <span>city:</span>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-              <option value="Tanger">Tanger</option>
-              <option value="Rabat">Rabat</option>
-              <option value="Marakech">Marakech</option>
-              <option value="Fes">Fes</option>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="City">
+              <option value="#"></option>
+              <?php
+              while ($data = $citys->fetch(PDO::FETCH_ASSOC)) {
+                foreach ($data as $city) {
+                  echo "<option value='$city'>$city</option>";
+                }
+              }
+              ?>
             </select>
           </label>
           <label for="" class="d-flex ml-1 gap-1">
-            <span>type:</span>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-              <option value="apartment">apartment</option>
-              <option value="House">House</option>
-              <option value="Villa">Villa</option>
-              <option value="desk">desk</option>
-              <option value="ground">ground</option>
+            <span>category:</span>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="category">
+              <option value="#"></option>
+              <option value="apartment">Apartment</option>
+              <option value="house">House</option>
+              <option value="villa">Villa</option>
+              <option value="office">Office</option>
+              <option value="land">land</option>
             </select>
           </label>
           <label for="" class="d-flex ml-1 gap-1">
-            <span>categories:</span>
+            <span>Type:</span>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="type">
-              <option value="Rent">For Rent</option>
-              <option value="Sale">For Sale</option>
+            <option value="#"></option>
+              <option value="rent">For Rent</option>
+              <option value="sale">For Sale</option>
             </select>
           </label>
           <label for="" class="d-flex ml-1 gap-1" id="max-price">
@@ -173,10 +175,10 @@
   <!-- ============================================================== -->
   <div class="container mt-5 d-flex flex-wrap gap-5 justify-content-center">
     <?php
-      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
       $id = $row['ad_id'];
-    ?>
-      <div class="card wow">
+      ?>
+      <div class="card wow text-center">
         <img class="card-img-top mb-3 img-card"
           src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
         <div class="card-body">
@@ -188,29 +190,42 @@
               <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
             </form>
           </div>
-          <h3 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+          <h4 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
             <?php echo $row['title']; ?>
-          </h3>
-          <h5 class="card-sub-title"
-            style="font-family: Antic, sans-serif;color: #38ae53;margin: 13px;margin-top: 10px;margin-right: 20px;margin-bottom: 18px;margin-left: 43px;font-size: 23px; width: 100%; ">
+          </h4>
+          <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;font-size: 23px; width: 100%; ">
             <strong>
               <?php echo $row['category']; ?> |
-              <?php echo $row['price']; ?> $
+              <?php echo $row['price']; ?>$
             </strong>
           </h5>
           <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
             <?php echo $row['City']; ?>
           </p>
-          <button class="btn btn-danger w-100 d-flex text-center justify-content-center" id="Details"
-            style="border: none;width: 100px;height: 38px;margin-left: 14px;background: #A63F04;" type="button"
-            data-target="#Details<?php echo $id ?>">Details</button>
+          <form action="detailes.php" method="post">
+            <input type="hidden" name="detailesID" value="<?php echo $row['ad_id'] ?>">
+            <button class=" btn btn-danger" name="Details" id="Details<?php echo $row['ad_id'] ?>"
+              style="border: none;width: 90px;height: 38px;color: #fff;background: #A63F04;" type="submit"
+              data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
+          </form>
         </div>
       </div>
-    <?php
-      };
-      $pdo = null;
+      <?php
+    }
+    ;
+    $pdo = null;
     ?>
 </main>
+<?php if ($_SERVER["REQUEST_METHOD"] == "GET") { ?>
+  <nav class="mt-5 mb-5 " aria-label="Page navigation example">
+    <ul class=" flex-wrap pagination justify-content-center">
+      <?php for ($i = 1; $i <= $pagesNum; $i++) { ?>
+        <li class="page-item"><a class="page-link" href="<?php echo "index.php?pageId=" . $i ?>"><?php echo $i; ?></a></li>
+      <?php } ?>
+    </ul>
+  </nav>
+<?php }
+?>
 <!-- ============ footer ================= -->
 <footer class="bg-light text-center text-white mt-5">
   <!-- Grid container -->
@@ -259,4 +274,5 @@
 <!-- link JS -->
 <script src="script.js"></script>
 </body>
+
 </html>
