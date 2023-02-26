@@ -28,6 +28,47 @@ foreach ($result2 as $row) {
     array_push($result, $array);
 }
 ?>
+<nav class="navbar navbar-expand-lg fixed-top" id="nav">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Toggle button -->
+        <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
+            aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class=" me-auto mb-2 mb-lg-0 nav nav-pills">
+                <li class="nav-item mr-4">
+                    <a class="nav-link text-warning" href="home.php">Home</a>
+                </li>
+                <li class="nav-item mr-4">
+                    <a class="nav-link text-white" href="clients.php">My Annonce</a>
+                </li>
+            </ul>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="" alt="" srcset="images/bighouse.jpg"
+                        style="width: 30px; height: 30px;border-radius: 50%;">
+                    Profile
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="profile.php">profile</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a href="logout.php" class="dropdown-item">
+                        logout
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
 <!-- Slideshow container -->
 <div class="slideshow-container">
 
@@ -68,40 +109,12 @@ foreach ($result2 as $row) {
         max-width: 1000px;
         position: relative;
         margin: auto;
+        margin-top: 4em;
     }
 
     /* Hide the images by default */
     .mySlides {
         display: none;
-    }
-
-    /* Next & previous buttons */
-    .prev,
-    .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        margin-top: -22px;
-        padding: 16px;
-        color: white;
-        font-weight: bold;
-        font-size: 18px;
-        transition: 0.6s ease;
-        border-radius: 0 3px 3px 0;
-        user-select: none;
-    }
-
-    /* Position the "next button" to the right */
-    .next {
-        right: 0;
-        border-radius: 3px 0 0 3px;
-    }
-
-    /* On hover, add a black background color with a little bit see-through */
-    .prev:hover,
-    .next:hover {
-        background-color: rgba(0, 0, 0, 0.8);
     }
 
     /* Number text (1/3 etc) */
@@ -111,23 +124,6 @@ foreach ($result2 as $row) {
         padding: 8px 12px;
         position: absolute;
         top: 0;
-    }
-
-    /* The dots/bullets/indicators */
-    .dot {
-        cursor: pointer;
-        height: 15px;
-        width: 15px;
-        margin: 0 2px;
-        background-color: #bbb;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.6s ease;
-    }
-
-    .active,
-    .dot:hover {
-        background-color: #717171;
     }
 </style>
 
@@ -147,19 +143,23 @@ foreach ($result2 as $row) {
         setTimeout(showSlides, 3000); // Change image every 3 seconds
     }
 </script>
-<?php
-// echo '<h1>Results from `annonce` table:</h1>';
-// echo "<pre>";
-// var_dump($result1);
-// echo "</pre>";
-?>
 <div>
-    <h1><?php echo $result1[0]['title'] ?></h1>
-    <p>Price : <?php echo $result1[0]['price']?>$</p>
+    <h1>
+        <?php echo $result1[0]['title'] ?>
+    </h1>
+    <p>Price :
+        <?php echo $result1[0]['price'] ?>$
+    </p>
     <br>
-    <p>Address : <?php echo $result1[0]['address']?></p>
+    <p>Address :
+        <?php echo $result1[0]['address'] ?>
+    </p>
     <br>
-    <p>For <?php echo $result1[0]['type'] ?></p>
+    <p>For
+        <?php echo $result1[0]['type'] ?>
+    </p>
     <br>
-    <p>Category : <?php echo $result1[0]['category'] ?></p>
+    <p>Category :
+        <?php echo $result1[0]['category'] ?>
+    </p>
 </div>

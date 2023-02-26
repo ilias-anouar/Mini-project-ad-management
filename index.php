@@ -92,7 +92,8 @@
                 <input type="tel" id="phoneNumber" class="form-control form-control-lg" name="phonNumber" required />
               </div>
             </div>
-          </div <div class="row">
+          </div>
+          <div class="row">
           <div class="col-md-6 mb-4 pb-2">
             <div class="form-outline">
               <label class="form-label" for="emailAddress">Password:</label>

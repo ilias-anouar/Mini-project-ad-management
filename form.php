@@ -2,6 +2,7 @@
 session_start();
 include "header.php"
     ?>
+
 <body>
     <form class="text-center" method="post">
         <h2 class="fw-bold">Add advert</h2>
@@ -54,9 +55,10 @@ include "header.php"
                     <label for="Category">Category</label>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="file" id="Image" class="form-control" 
+                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
                         aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                    <button class="btn btn-success" type="button" id="inputGroupFileAddon04"><i
+                            class="fa-solid fa-plus"></i></button>
                 </div>
                 <div id="upload">
                 </div>
@@ -149,7 +151,7 @@ if (isset($_POST["add"])) {
     //     $client_id = $client_id['client_id'];
     // }
     $client_id = $_SESSION['client_id'];
-    
+
     $sql = "INSERT INTO `annonce`(`ad_id`, `title`, `price`, `publication_date`, `last_modification_date`, `address`, `City`, `Contry`, `category`, `type`, `client_id`) VALUES (null,'$ad->title','$ad->price','$ad->publication_date',NOW(),'$ad->City,$ad->Country','$ad->City','$ad->Country','$ad->category','$ad->type','$client_id')";
     $conn->exec($sql);
     $last_id = $conn->lastInsertId();
