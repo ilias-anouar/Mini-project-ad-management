@@ -9,8 +9,6 @@ $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_i
 $result = $conn->query($sql);
 ?>
 
-
-
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top" id="nav">
