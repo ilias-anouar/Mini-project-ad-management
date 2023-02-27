@@ -54,27 +54,27 @@ foreach ($result2 as $row) {
         <!-- Full-width images with number and caption text -->
         <div class="mySlides">
             <div class="numbertext">1 / 5</div>
-            <img src="images/<?php echo str_replace("C:fakepath", "", $result[0]['image_url']); ?>" style="width:100%">
+            <img src="add/<?php echo str_replace("C:fakepath", "", $result[0]['image_url']); ?>" style="width:100%">
         </div>
 
         <div class="mySlides">
             <div class="numbertext">2 / 5</div>
-            <img src="images/<?php echo str_replace("C:fakepath", "", $result[1]['image_url']); ?>" style="width:100%">
+            <img src="add/<?php echo str_replace("C:fakepath", "", $result[1]['image_url']); ?>" style="width:100%">
         </div>
 
         <div class="mySlides">
             <div class="numbertext">3 / 5</div>
-            <img src="images/<?php echo str_replace("C:fakepath", "", $result[2]['image_url']); ?>" style="width:100%">
+            <img src="add/<?php echo str_replace("C:fakepath", "", $result[2]['image_url']); ?>" style="width:100%">
         </div>
 
         <div class="mySlides">
             <div class="numbertext">4 / 5</div>
-            <img src="images/<?php echo str_replace("C:fakepath", "", $result[3]['image_url']); ?>" style="width:100%">
+            <img src="add/<?php echo str_replace("C:fakepath", "", $result[3]['image_url']); ?>" style="width:100%">
         </div>
 
         <div class="mySlides">
             <div class="numbertext">5 / 5</div>
-            <img src="images/<?php echo str_replace("C:fakepath", "", $result[4]['image_url']); ?>" style="width:100%">
+            <img src="add/<?php echo str_replace("C:fakepath", "", $result[4]['image_url']); ?>" style="width:100%">
         </div>
     </div>
 
