@@ -117,6 +117,7 @@ if (isset($_POST['price_sort'])) {
 }
 
 ?>
+
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top" id="nav">
@@ -150,12 +151,10 @@ if (isset($_POST['price_sort'])) {
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <img src="" alt="" srcset="images/bighouse.jpg" style="width: 30px; height: 30px;border-radius: 50%;">
             Profile
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="profile.php">profile</a>
-            <a class="dropdown-item" href="#">Another action</a>
             <a href="logout.php" class="dropdown-item">
               logout
               <iclass="fa-solid fa-right-from-bracket"></iclass=>
@@ -185,7 +184,7 @@ if (isset($_POST['price_sort'])) {
 
         <div class="card wow">
           <img class="card-img-top mb-3 img-card"
-            src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
+            src="add/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
           <div class="card-body">
             <div id="icon-span">
               <p id="type-an">
@@ -209,9 +208,8 @@ if (isset($_POST['price_sort'])) {
               <?php echo $row['City']; ?>
             </p>
             <div class="d-flex gap-3">
-              <button type="button" class="btn btn-warning"
-                style="border: none;width: 90px;height: 38px;" data-toggle="modal"
-                data-target="#Edit<?php echo $row['ad_id'] ?>">
+              <button type="button" class="btn btn-warning" style="border: none;width: 90px;height: 38px;"
+                data-toggle="modal" data-target="#Edit<?php echo $row['ad_id'] ?>">
                 Edit
               </button>
               <button type="button" class="btn btn-danger" data-toggle="modal"
@@ -366,19 +364,24 @@ if (isset($_POST['price_sort'])) {
                       </div>
                       <div id="upload">
                         <?php
-                        // $id = $row["ad_id"];
-                        // $send = "SELECT * FROM `image_d_annonce`  where `ad_id`=$id";
-                        // $result = $conn->query($send);
-                        // while ($arry = $result->fetch(PDO::FETCH_ASSOC)) {
-                        //   $image_url = $arry["image_url"];
-                        //   echo `<div class="input-group mb-3">
-                        //   <div class="input-group-text btn-success">
-                        //   <input class="form-check-input mt-0" type="Radio" value="$image_url" name="is_principal" aria-label="Checkbox for following text input">
-                        //   </div>
-                        //   <input name='image${i}' type="text" class="form-control" aria-label="Text input with checkbox" value="$image_url">
-                        //   <button class="btn btn-danger close" onclick="remove(this)" type="button" id="button-addon2"><span aria-hidden="true">&times;</span></button>
-                        //   </div> `;
-                        // }
+                        $id = $row["ad_id"];
+                        $send = "SELECT * FROM `image_d_annonce`  where `ad_id`=$id";
+                        $result = $conn->query($send);
+                        while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                          $image_url = $row["image_url"];
+                          ?>
+                          <div class="input-group mb-3">
+                            <div class="input-group-text btn-success">
+                              <input class="form-check-input mt-0" type="Radio" value="<?php echo $image_url?>" name="is_principal"
+                                aria-label="Checkbox for following text input">
+                            </div>
+                            <input name='image$i' type="text" class="form-control" aria-label="Text input with checkbox"
+                              value="<?php echo $image_url ?>">
+                            <button class="btn btn-danger close" onclick="remove(this)" type="button"
+                              id="button-addon2"><span aria-hidden="true">&times;</span></button>
+                          </div>
+                          <?php
+                        }
                         ?>
                       </div>
                     </div>
