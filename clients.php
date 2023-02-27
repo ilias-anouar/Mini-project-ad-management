@@ -3,6 +3,7 @@
 session_start();
 include 'connect.php';
 include "header.php";
+include "form.php";
 
 $client_id = $_SESSION['client_id'];
 $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
@@ -145,8 +146,7 @@ if (isset($_POST['price_sort'])) {
         </ul>
         <!-- Button SIGN UP -->
         <button type="button" class="btn me-3 btn-success text-leight" id="btn-addAnnonce" data-toggle="modal"
-          data-target="#addAnnonceModal">
-          <a href="form.php"><span class="text-light">Add annonce</span> <i class="fa-solid fa-plus text-light"></i></a>
+          data-target="#add">Add annonce<i class="fa-solid fa-plus text-light"></i>
         </button>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
@@ -157,7 +157,7 @@ if (isset($_POST['price_sort'])) {
             <a class="dropdown-item" href="profile.php">profile</a>
             <a href="logout.php" class="dropdown-item">
               logout
-              <iclass="fa-solid fa-right-from-bracket"></iclass=>
+              <i class="fa-solid fa-right-from-bracket"></i>
             </a>
           </div>
         </div>
@@ -372,8 +372,8 @@ if (isset($_POST['price_sort'])) {
                           ?>
                           <div class="input-group mb-3">
                             <div class="input-group-text btn-success">
-                              <input class="form-check-input mt-0" type="Radio" value="<?php echo $image_url?>" name="is_principal"
-                                aria-label="Checkbox for following text input">
+                              <input class="form-check-input mt-0" type="Radio" value="<?php echo $image_url ?>"
+                                name="is_principal" aria-label="Checkbox for following text input">
                             </div>
                             <input name='image$i' type="text" class="form-control" aria-label="Text input with checkbox"
                               value="<?php echo $image_url ?>">
@@ -470,17 +470,6 @@ if (isset($_POST['price_sort'])) {
       </div>
     </div>
   </div>
-
-
-
-
-  <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
-</button>
-
-
-
   <!-- ============ footer ================= -->
   <footer class="bg-light text-center text-white mt-5">
     <!-- Grid container -->

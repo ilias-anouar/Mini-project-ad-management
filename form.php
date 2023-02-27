@@ -2,156 +2,89 @@
 session_start();
 include "header.php"
     ?>
+
 <body>
 
-<!-- Modal -->
-<div class="modal fade bd-example-modal-lg" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-            <form class="text-center" method="post">
-        <h2 class="fw-bold">Add advert</h2>
-        <div class="d-flex justify-content-evenly">
-            <div>
-                <div class="form-floating mb-3">
-                    <input name="title" type="text" class="form-control shadow-none" id="floatingInput"
-                        placeholder="Title"></input>
-                    <label for="floatingInput">Title</label>
+    <!-- Modal -->
+    <div class="modal fade" id="add" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form class="text-center " method="post">
+                        <h2 class="fw-bold">Add advert</h2>
+                        <div class="d-flex gap-5">
+                            <div class="w-100">
+                                <div class="form-floating mb-3">
+                                    <input name="title" type="text" class="form-control shadow-none" id="floatingInput"
+                                        placeholder="Title"></input>
+                                    <label for="floatingInput">Title</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" name="city" class="form-control shadow-none" placeholder="City"
+                                        id="floating"></input>
+                                    <label for="floating">City</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input name="country" type="text" class="form-control shadow-none" id="floating"
+                                        placeholder="Country"></input>
+                                    <label for="floating">Country</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input name="date" type="date" class="form-control shadow-none" id="floating"
+                                        placeholder="Date"></input>
+                                    <label for="floating">Date</label>
+                                </div>
+                            </div>
+                            <div class="w-100">
+                                <div class="form-floating mb-3">
+                                    <input name="price" type="number" class="form-control shadow-none"
+                                        id="floatingPassword" placeholder="Price"></input>
+                                    <label for="floatingPassword">Price</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <select name="type" class="form-control shadow-none" aria-label=".form-select"
+                                        id="type">
+                                        <option value="#"></option>
+                                        <option value="sale">Selling</option>
+                                        <option value="rent">Renting</option>
+                                    </select>
+                                    <label for="Type">Type</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <select name="Category" class="form-control shadow-none" aria-label=".form-select"
+                                        id="Category">
+                                        <option value="#"></option>
+                                        <option value="apartment">Apartment</option>
+                                        <option value="house">House</option>
+                                        <option value="villa">Villa</option>
+                                        <option value="office">Office</option>
+                                        <option value="land">land</option>
+                                    </select>
+                                    <label for="Category">Category</label>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
+                                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    <button class="btn btn-success" type="button" id="inputGroupFileAddon04"><i
+                                            class="fa-solid fa-plus"></i></button>
+                                </div>
+                                <div id="upload">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
+                            <button name="add" type="submit" class="btn btn-primary">ADD</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-floating mb-3">
-                    <input type="text" name="city" class="form-control shadow-none" placeholder="City"
-                        id="floating"></input>
-                    <label for="floating">City</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input name="country" type="text" class="form-control shadow-none" id="floating"
-                        placeholder="Country"></input>
-                    <label for="floating">Country</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input name="date" type="date" class="form-control shadow-none" id="floating"
-                        placeholder="Date"></input>
-                    <label for="floating">Date</label>
-                </div>
-            </div>
-            <div>
-                <div class="form-floating mb-3">
-                    <input name="price" type="number" class="form-control shadow-none" id="floatingPassword"
-                        placeholder="Price"></input>
-                    <label for="floatingPassword">Price</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="type" class="form-control shadow-none" aria-label=".form-select" id="type">
-                        <option value="#"></option>
-                        <option value="sale">Selling</option>
-                        <option value="rent">Renting</option>
-                    </select>
-                    <label for="Type">Type</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="Category" class="form-control shadow-none" aria-label=".form-select" id="Category">
-                        <option value="#"></option>
-                        <option value="apartment">Apartment</option>
-                        <option value="house">House</option>
-                        <option value="villa">Villa</option>
-                        <option value="office">Office</option>
-                        <option value="land">land</option>
-                    </select>
-                    <label for="Category">Category</label>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-success" type="button" id="inputGroupFileAddon04"><i
-                            class="fa-solid fa-plus"></i></button>
-                </div>
-                <div id="upload">
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
-            <button name="add" type="submit" class="btn btn-primary">ADD</button>
-        </div>
-    </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
     </div>
-  </div>
-</div>
-    
-    <!-- <form class="text-center" method="post">
-        <h2 class="fw-bold">Add advert</h2>
-        <div class="d-flex justify-content-evenly">
-            <div>
-                <div class="form-floating mb-3">
-                    <input name="title" type="text" class="form-control shadow-none" id="floatingInput"
-                        placeholder="Title"></input>
-                    <label for="floatingInput">Title</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input type="text" name="city" class="form-control shadow-none" placeholder="City"
-                        id="floating"></input>
-                    <label for="floating">City</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input name="country" type="text" class="form-control shadow-none" id="floating"
-                        placeholder="Country"></input>
-                    <label for="floating">Country</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <input name="date" type="date" class="form-control shadow-none" id="floating"
-                        placeholder="Date"></input>
-                    <label for="floating">Date</label>
-                </div>
-            </div>
-            <div>
-                <div class="form-floating mb-3">
-                    <input name="price" type="number" class="form-control shadow-none" id="floatingPassword"
-                        placeholder="Price"></input>
-                    <label for="floatingPassword">Price</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="type" class="form-control shadow-none" aria-label=".form-select" id="type">
-                        <option value="#"></option>
-                        <option value="sale">Selling</option>
-                        <option value="rent">Renting</option>
-                    </select>
-                    <label for="Type">Type</label>
-                </div>
-                <div class="form-floating mb-3">
-                    <select name="Category" class="form-control shadow-none" aria-label=".form-select" id="Category">
-                        <option value="#"></option>
-                        <option value="apartment">Apartment</option>
-                        <option value="house">House</option>
-                        <option value="villa">Villa</option>
-                        <option value="office">Office</option>
-                        <option value="land">land</option>
-                    </select>
-                    <label for="Category">Category</label>
-                </div>
-                <div class="input-group mb-3">
-                    <input type="file" id="Image" class="form-control" id="inputGroupFile04"
-                        aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                    <button class="btn btn-success" type="button" id="inputGroupFileAddon04"><i
-                            class="fa-solid fa-plus"></i></button>
-                </div>
-                <div id="upload">
-                </div>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center align-items-center mb-3 mt-3">
-            <button name="add" type="submit" class="btn btn-primary">ADD</button>
-        </div>
-    </form> -->
+
     <script>
         let i = 0;
         let addedimages = document.getElementById("inputGroupFileAddon04")
