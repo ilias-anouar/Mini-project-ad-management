@@ -309,7 +309,7 @@ if (isset($_POST['price_sort'])) {
         ?>
         <div class="card wow text-center">
           <img class="card-img-top mb-3 img-card"
-            src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
+            src="add/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
           <div class="card-body">
             <div id="icon-span">
               <p id="type-an">
@@ -346,7 +346,7 @@ if (isset($_POST['price_sort'])) {
         ?>
         <div class="card wow text-center">
           <img class="card-img-top mb-3 img-card"
-            src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
+            src="add/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
           <div class="card-body">
             <div id="icon-span">
               <p id="type-an">
@@ -383,7 +383,7 @@ if (isset($_POST['price_sort'])) {
         ?>
         <div class="card wow text-center">
           <img class="card-img-top mb-3 img-card"
-            src="images/<?php echo str_replace("C:fakepath", "", $sorted[$i]['image_url']); ?>">
+            src="add/<?php echo str_replace("C:fakepath", "", $sorted[$i]['image_url']); ?>">
           <div class="card-body">
             <div id="icon-span">
               <p id="type-an">
@@ -420,7 +420,7 @@ if (isset($_POST['price_sort'])) {
         ?>
         <div class="card wow text-center">
           <img class="card-img-top mb-3 img-card"
-            src="images/<?php echo str_replace("C:fakepath", "", $sorted[$i]['image_url']); ?>">
+            src="add/<?php echo str_replace("C:fakepath", "", $sorted[$i]['image_url']); ?>">
           <div class="card-body">
             <div id="icon-span">
               <p id="type-an">

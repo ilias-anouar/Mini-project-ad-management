@@ -147,14 +147,6 @@ if (isset($_POST['price_sort'])) {
           data-target="#addAnnonceModal">
           <a href="form.php"><span class="text-light">Add annonce</span> <i class="fa-solid fa-plus text-light"></i></a>
         </button>
-        <!-- button LOG IN -->
-        <!-- <div class="d-flex align-items-center">
-              <a type="button" class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
-                data-toggle="modal" data-target="#btn">
-                Profile
-                <i class="fa-solid fa-user"></i>
-              </a>
-            </div> -->
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
