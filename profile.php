@@ -95,47 +95,58 @@ $row = $select->fetch();
         <div class="card mb-4">
           <div class="card-header">Account Details</div>
           <div class="card-body">
-            <form>
+            <form method="POST" action="">
               <!-- Form Group (username)-->
               <!-- Form Row-->
               <div class="row gx-3 mb-3">
                 <!-- Form Group (first name)-->
                 <div class="col-md-6">
                   <label class="small mb-1" for="inputFirstName">First name</label>
-                  <input class="form-control" id="inputFirstName" type="text" placeholder="Enter your first name"
-                    value="<?php echo $row['first_name'] ?>">
+                  <input class="form-control" name="inputFirstName" id="inputFirstName" type="text" placeholder="Enter your first name"
+                    value="<?php echo $row['first_name'] ?>" required>
                 </div>
                 <!-- Form Group (last name)-->
                 <div class="col-md-6">
                   <label class="small mb-1" for="inputLastName">Last name</label>
-                  <input class="form-control" id="inputLastName" type="text" placeholder="Enter your last name"
-                    value="<?php echo $row['last_name'] ?>">
+                  <input class="form-control" name="inputLastName" id="inputLastName" type="text" placeholder="Enter your last name"
+                    value="<?php echo $row['last_name'] ?>" required>
                 </div>
               </div>
-              <div class="row gx-3 mb-3">
-                <!-- Form Group (phone number)-->
-                <div class="col-md-6">
-                  <label class="small mb-1" for="inputPhone">Phone number</label>
-                  <input class="form-control" id="inputPhone" type="tel" placeholder="Enter your phone number"
-                    value="<?php echo $row['phone_number'] ?>">
-                </div>
-                <!-- Form Group (birthday)-->
-                <div class="col-md-6">
-                  <label class="small mb-1" for="inputBirthday">Birthday</label>
-                  <input class="form-control" id="inputBirthday" type="text" name="birthday"
-                    placeholder="Enter your birthday" value="06/10/1988">
-                </div>
-              </div>
+
 
               <!-- Form Group (email address)-->
               <div class="mb-3">
                 <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                <input class="form-control" id="inputEmailAddress" type="email" placeholder="Enter your email address"
-                  value="<?php echo $row['email'] ?>">
+                <input class="form-control" name="inputEmailAddress" id="inputEmailAddress" type="email" placeholder="Enter your email address"
+                  value="<?php echo $row['email'] ?>" required>
               </div>
 
+                <!-- Form Group (phone number)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="inputPhone">Phone number</label>
+                  <input class="form-control" name="inputPhone" id="inputPhone" type="tel" placeholder="Enter your phone number"
+                    value="<?php echo $row['phone_number'] ?>" required>
+                </div>
+
+              
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (phone number)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="inputPhone">password</label>
+                  <input class="form-control" name="inpPassword" id="inpPassword" type="tel" placeholder="Enter your phone number"
+                    value="" required>
+                </div>
+                <!-- Form Group (birthday)-->
+                <div class="col-md-6">
+                  <label class="small mb-1" for="newPassword">new password</label>
+                  <input class="form-control" id="newPassword" type="text" name="newPassword"
+                    placeholder="Enter the new passcode" value="" required>
+                </div>
+              </div>
+
+
               <!-- Save changes button-->
-              <button class="btn btn-primary" type="button">Save changes</button>
+              <button class="btn btn-primary" type="submit" name="saveChange">Save changes</button>
             </form>
           </div>
         </div>
@@ -213,6 +224,51 @@ $row = $select->fetch();
       margin-left: 1rem;
       margin-right: 1rem;
     }
+
+
+<?php
+  $newPassword = $_POST['newPassword'];
+  $inpPassword = $_POST['inpPassword'];
+  $inputPhone = $_POST['inputPhone'];
+  $inputEmailAddress = $_POST['inputEmailAddress'];
+  $inputLastName = $_POST['inputLastName'];
+  $inputFirstName = $_POST['inputFirstName'];
+  $client_id = $_SESSION['client_id'];
+
+  if (isset($_POST['saveChange'])) {
+    echo 'qsdqsdlmkqsdmqsmdml';
+    $select = $conn->query("SELECT password FROM client");
+    $row = $select->fetch();
+    echo $row['password'];
+    if (is_array($row)) {
+      // virification password
+      if (password_verify($_POST['inpPassword'], $row['password'])){
+
+        $sql = "UPDATE client SET first_name=:$inputFirstName, last_name=:$inputLastName, email=:sex, password=:$newPassword , phone_number=:$inputPhone WHERE id=:$client_id";
+        $pdo->prepare($sql)->execute($data);
+        echo 'skdlqlksfdl';
+
+        echo '<script>swal({
+          title: "change is sucsses",
+          text: "You clicked the button!",
+          icon: "sucsses",
+          button: "Aww yiss!",
+        });</script>';
+      } else {
+        echo '<script>swal({
+          title: "change is not sucsses",
+          text: "You clicked the button!",
+          icon: "warning",
+          button: "Aww yiss!",
+        });</script>';
+      }
+    }
+  }
+?>
+
+
+
+
   </style>
 
   <!-- ============ footer ================= -->

@@ -35,9 +35,9 @@ $result = $conn->query($sql);
           </li>
         </ul>
         <!-- Button SIGN UP -->
-        <button type="button" class="btn me-3 btn-success" id="btn-addAnnonce" data-toggle="modal"
+        <button type="button" class="btn me-3 btn-success text-leight" id="btn-addAnnonce" data-toggle="modal"
           data-target="#addAnnonceModal">
-          <a href="form.php"><span>Add annonce</span> <i class="fa-solid fa-plus"></i></a>
+          <a href="form.php"><span class="text-light">Add annonce</span> <i class="fa-solid fa-plus text-light"></i></a>
         </button>
         <!-- button LOG IN -->
         <!-- <div class="d-flex align-items-center">

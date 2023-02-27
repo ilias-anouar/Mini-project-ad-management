@@ -27,6 +27,7 @@ foreach ($result2 as $row) {
     $array = $row;
     array_push($result, $array);
 }
+
 ?>
 <nav class="navbar navbar-expand-lg fixed-top" id="nav">
     <!-- Container wrapper -->

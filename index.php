@@ -56,7 +56,7 @@ $citys = $conn->query($city);
       </div>
       <div class="modal-body">
         <div class="text-center">
-          <img src="image/imagereader41.JPG" style="width: 185px" alt="logo" />
+          <img src="images/logo.png" style="width: 185px" alt="logo" />
           <h4 class="">Create Your Account</h4>
         </div>
         <form action="signUp.php" method="POST" enctype="multipart/form-data">
@@ -99,7 +99,7 @@ $citys = $conn->query($city);
             <div class="col-md-6 mb-4 pb-2">
               <div class="form-outline">
                 <label class="form-label" for="phoneNumber">confirm password:</label>
-                <input type="password" id="phoneNumber" namee="confirmPassword" class="form-control form-control-lg"
+                <input type="password" id="phoneNumber" name="confirmPassword" class="form-control form-control-lg"
                   required />
               </div>
             </div>

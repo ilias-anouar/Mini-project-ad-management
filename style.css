@@ -89,7 +89,8 @@ body{margin-top:20px;
 #slider-three {
     height: 290px;
     width: 100%;
-    background-image: url(Images/imagereader11.JPG);
+    /* background-image: url(Images/kara-eads-L7EwHkq1B2s-unsplash.jpg); */
+    background: url(images/pexels-pixabay-271795.jpg) center center/cover;
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -141,6 +142,13 @@ body{margin-top:20px;
     padding-right: 1rem;
     border-radius: 10px;
 }
+a {
+    text-decoration: none;
+}
+a span {
+    color: #eee;
+
+}
 
 input {
     border-radius: 6px;
@@ -158,7 +166,7 @@ select option {
     position: absolute;
     height: 3rem;
     bottom: 76%;
-    left: 6%;
+    left: 2%;
     border-radius: 5%;
 }
 
@@ -244,3 +252,5 @@ label span {
 .addAnnonce-clients {
     background-color: #0aa7cd;
 }
+
+/* style page profile */

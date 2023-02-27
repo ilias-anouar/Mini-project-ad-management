@@ -44,7 +44,7 @@ include 'connect.php';
 
                   <div class="d-flex align-items-center justify-content-center pb-4">
                     <p class="mb-0 me-2">Don't have an account?</p>
-                    <button type="button" class="btn btn-outline-danger">
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#signUp" data-dismiss="modal">
                       Create new
                     </button>
                   </div>
@@ -68,7 +68,6 @@ include 'connect.php';
     $pass = $_POST['inpPassword'];
     $email = $_POST['inpEmail'];
     if (empty($email) && empty($pass)) {
-      // echo '<span style = color:red;>champ Obligatoire</span>';
       echo '<script>swal({
                 title: "Good job!",
                 text: "You clicked the button!",
@@ -76,22 +75,22 @@ include 'connect.php';
                 button: "Aww yiss!",
               });</script>';
     } else {
+      // select data
       $select = $conn->query("SELECT * FROM client WHERE email = '$email'");
       $row = $select->fetch();
-      print_r($row);
+
       if (is_array($row)) {
+        // virification password
         if (password_verify($_POST['inpPassword'], $row['password'])){
   
           header("Location: clients.php");
-  
-  
           $_SESSION['first_name'] = $row['first_name'];
           $_SESSION['last_name'] = $row['last_name'];
           $_SESSION['pass'] = $row['password'];
           $_SESSION['client_id'] = $row['client_id'];
-          echo $_SESSION['client_id'];
   
-        }       echo '<script>swal({
+        }  
+          echo '<script>swal({
           title: "password not coreect",
           text: "You clicked the button!",
           icon: "warning",
@@ -107,13 +106,9 @@ include 'connect.php';
       }       
 
     }
-    // if (isset($_SESSION['first_name'])) {
-    //   header("location: clients.php");
-    // }
+
   }
-//    else {
-//   header('location: index.php');
-// }
+
 ?>
 
 
