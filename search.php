@@ -39,19 +39,8 @@ if (isset($_POST['searchbtn'])) {
     //     ) img ON annonce.ad_id = img.ad_id
     //     WHERE " . implode(" AND ", $queryParams);
 
-    $sql = "SELECT a.*, i.image_path AS primary_image_path 
-    FROM annonce a 
-    LEFT JOIN image_d_annonce i 
-    ON a.ad_id = i.ad_id AND i.primary_or_secondary = 'primary' AND
-    " . implode($queryParams);
-
-    // execute the query and display the results
-    $result = $conn->query($sql);
-    $FilterResult = $result->fetchAll(PDO::FETCH_ASSOC);
-    $primaryImagePaths = array();
-    foreach ($FilterResult as $val) {
-        $primaryImagePaths[$val['ad_id']] = $val['primary_image_path'];
-    }
+    $filter = ("SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1 " . implode("AND",$queryParams));
+    header("Location: index.php");
 } else {
 
     $pageId;
@@ -65,8 +54,6 @@ if (isset($_POST['searchbtn'])) {
     $endIndex = $pageId * 6;
     $StartIndex = $endIndex - 6;
 
-
-    // $announcesDATA = $conn->query("SELECT * FROM annonce Limit 8 OFFSET $StartIndex")->fetchAll(PDO::FETCH_ASSOC);
     $sql = ("SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1 LIMIT 6 OFFSET $StartIndex");
 
     $page = 'SELECT * FROM annonce';
@@ -83,5 +70,4 @@ if (isset($_POST['searchbtn'])) {
         $pagesNum = ceil($annoncesLength / 6);
     }
 }
-
 ?>

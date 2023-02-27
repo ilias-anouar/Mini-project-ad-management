@@ -7,8 +7,116 @@ include "header.php";
 $client_id = $_SESSION['client_id'];
 $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce`  where   client_id = '$client_id' AND Is_principale = 1 ";
 $result = $conn->query($sql);
-?>
+$city = "SELECT DISTINCT `City` FROM `annonce`";
+if (isset($_POST['searchbtn'])) {
+  // retrieve the form inputs using $_POST and store them in the $queryParams array
+  if (!empty($_POST['City'])) {
+    $queryParams[] = "City = '{$_POST['City']}'";
+  }
 
+  if (!empty($_POST['type'])) {
+    $queryParams[] = "type = '{$_POST['type']}'";
+  }
+
+  if (!empty($_POST['category'])) {
+    $queryParams[] = "category = '{$_POST['category']}'";
+  }
+
+  if (!empty($_POST['max_Price'])) {
+    $queryParams[] = "price <= {$_POST['max_Price']}";
+  }
+
+  if (!empty($_POST['min_Price'])) {
+    $queryParams[] = "price >= {$_POST['min_Price']}";
+  }
+
+  $filter = ("SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1 AND " . implode(" AND ", $queryParams));
+  $filter = $conn->query($filter);
+
+} else {
+
+  $pageId;
+
+  if (isset($_GET['pageId'])) {
+    $pageId = $_GET['pageId'];
+  } else {
+    $pageId = 1;
+  }
+
+  $endIndex = $pageId * 6;
+  $StartIndex = $endIndex - 6;
+
+  $sql = ("SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1 LIMIT 6 OFFSET $StartIndex");
+
+  $page = 'SELECT * FROM annonce';
+
+  $result = $conn->query($sql);
+
+  $annoncesLength = $conn->query($page)->rowCount();
+
+  $pagesNum = 0;
+
+  if (($annoncesLength % 6) == 0) {
+
+    $pagesNum = $annoncesLength / 6;
+  } else {
+    $pagesNum = ceil($annoncesLength / 6);
+  }
+}
+$citys = $conn->query($city);
+// User input to select sorting field and order
+if (isset($_POST['date_sort'])) {
+  $sort_field = 'publication_date';
+  $sort_order = $_POST['date_order'];
+
+  // SQL query to select cards and sort by specified field and order
+  $sql = "SELECT * FROM annonce NATURAL JOIN `image_d_annonce` where Is_principale = 1 ORDER BY $sort_field $sort_order LIMIT 6 OFFSET $StartIndex";
+  $stmt = $conn->query($sql);
+  // Fetch the sorted cards
+  $sorted = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $page = 'SELECT * FROM annonce';
+
+  $result = $conn->query($sql);
+
+  $annoncesLength = $conn->query($page)->rowCount();
+
+  $pagesNum = 0;
+
+  if (($annoncesLength % 6) == 0) {
+
+    $pagesNum = $annoncesLength / 6;
+  } else {
+    $pagesNum = ceil($annoncesLength / 6);
+  }
+}
+if (isset($_POST['price_sort'])) {
+  $sort_field = 'price';
+  $sort_order = $_POST['price_order'];
+
+  // SQL query to select cards and sort by specified field and order
+  $sql = "SELECT * FROM annonce NATURAL JOIN `image_d_annonce` where Is_principale = 1 ORDER BY $sort_field $sort_order LIMIT 6 OFFSET $StartIndex";
+  $stmt = $conn->query($sql);
+  // Fetch the sorted cards
+  $sorted = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $page = 'SELECT * FROM annonce';
+
+  $result = $conn->query($sql);
+
+  $annoncesLength = $conn->query($page)->rowCount();
+
+  $pagesNum = 0;
+
+  if (($annoncesLength % 6) == 0) {
+
+    $pagesNum = $annoncesLength / 6;
+  } else {
+    $pagesNum = ceil($annoncesLength / 6);
+  }
+}
+
+?>
 <body>
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg fixed-top" id="nav">
