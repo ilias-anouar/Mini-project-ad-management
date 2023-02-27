@@ -100,21 +100,13 @@ $row = $select->fetch();
 
 
               <div class="row gx-3 mb-3">
-                <!-- Form Group (phone number)-->
+                <!-- Form password -->
                 <div class="col-md-6">
-                  <label class="small mb-1" for="inputPhone">password</label>
+                  <label class="small mb-1" for="inputPhone">password:</label>
                   <input class="form-control" name="inpPassword" id="inpPassword" type="tel"
-                    placeholder="Enter your phone number" value="" required>
-                </div>
-                <!-- Form Group (birthday)-->
-                <div class="col-md-6">
-                  <label class="small mb-1" for="newPassword">new password</label>
-                  <input class="form-control" id="newPassword" type="text" name="newPassword"
-                    placeholder="Enter the new passcode" value="" required>
+                    placeholder="Enter your password" value="" required>
                 </div>
               </div>
-
-
               <!-- Save changes button-->
               <button class="btn btn-primary" type="submit" name="saveChange">Save changes</button>
             </form>
@@ -197,7 +189,6 @@ $row = $select->fetch();
 
 
     <?php
-    $newPassword = $_POST['newPassword'];
     $inpPassword = $_POST['inpPassword'];
     $inputPhone = $_POST['inputPhone'];
     $inputEmailAddress = $_POST['inputEmailAddress'];
@@ -213,10 +204,8 @@ $row = $select->fetch();
         // virification password
         if (password_verify($_POST['inpPassword'], $row['password'])) {
 
-          $sql = "UPDATE client SET first_name=:$inputFirstName, last_name=:$inputLastName, email=:sex, password=:$newPassword , phone_number=:$inputPhone WHERE id=:$client_id";
-          $conn->prepare($sql)->execute($data);
-          echo 'skdlqlksfdl';
-
+          $sql = "UPDATE client SET first_name=:$inputFirstName, last_name=:$inputLastName, email=:sex, password=:$inpPassword , phone_number=:$inputPhone WHERE id=:$client_id";
+          $conn->prepare($sql)->execute();
           echo '<script>swal({
           title: "change is sucsses",
           text: "You clicked the button!",
