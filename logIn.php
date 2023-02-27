@@ -80,7 +80,7 @@ include 'connect.php';
       $row = $select->fetch();
 
       if (is_array($row)) {
-        // virification password
+        // vilification password
         if (password_verify($_POST['inpPassword'], $row['password'])){
   
           header("Location: clients.php");
