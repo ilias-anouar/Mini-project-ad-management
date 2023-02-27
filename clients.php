@@ -468,6 +468,16 @@ if (isset($_POST['price_sort'])) {
     </div>
   </div>
 
+
+
+
+  <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+
+
   <!-- ============ footer ================= -->
   <footer class="bg-light text-center text-white mt-5">
     <!-- Grid container -->
