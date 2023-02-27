@@ -162,11 +162,10 @@ select option {
 }
 
 #btn-serch {
-    padding-top: 10%;
     position: absolute;
     height: 3rem;
-    bottom: 76%;
-    left: 2%;
+    bottom: 68%;
+    left: 12%;
     border-radius: 5%;
 }
 

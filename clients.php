@@ -1,6 +1,6 @@
 <?php
 // include 'logIn.php';
-session_start();
+// session_start();
 include 'connect.php';
 include "header.php";
 include "form.php";

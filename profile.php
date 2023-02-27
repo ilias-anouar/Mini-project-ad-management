@@ -31,11 +31,6 @@ $row = $select->fetch();
             <a class="nav-link text-white" href="clients.php">My Annonce</a>
           </li>
         </ul>
-        <!-- Button SIGN UP -->
-        <button type="button" class="btn me-3 btn-success" id="btn-addAnnonce" data-toggle="modal"
-          data-target="#addAnnonceModal">
-          <a href="form.php"><span>Add annonce</span> <i class="fa-solid fa-plus"></i></a>
-        </button>
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
@@ -60,7 +55,6 @@ $row = $select->fetch();
   <div class="container-xl px-4 mt-5 pt-5">
     <hr class="mt-0 mb-4">
     <div class="row">
-      <div class="col-xl-8">
         <!-- Account details card-->
         <div class="card mb-4">
           <div class="card-header">Account Details</div>
@@ -112,7 +106,6 @@ $row = $select->fetch();
             </form>
           </div>
         </div>
-      </div>
     </div>
   </div>
 
