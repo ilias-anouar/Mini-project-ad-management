@@ -16,11 +16,6 @@ $row = $select->fetch();
   <nav class="navbar navbar-expand-lg fixed-top" id="nav">
     <!-- Container wrapper -->
     <div class="container">
-      <!-- Navbar brand -->
-      <a class="navbar-brand me-2" href="https://mdbgo.com/">
-        <!-- <img src="image/logo.png" height="16" alt="MDB Logo" loading="lazy" style="margin-top: -1px" /> -->
-      </a>
-      <!-- Toggle button -->
       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarButtonsExample"
         aria-controls="navbarButtonsExample" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars"></i>
@@ -41,26 +36,16 @@ $row = $select->fetch();
           data-target="#addAnnonceModal">
           <a href="form.php"><span>Add annonce</span> <i class="fa-solid fa-plus"></i></a>
         </button>
-        <!-- button LOG IN -->
-        <!-- <div class="d-flex align-items-center">
-              <a type="button" class="btn nav-link px-3 me-2 text-white d-flex align-items-center gap-1 sign-in"
-                data-toggle="modal" data-target="#btn">
-                Profile
-                <i class="fa-solid fa-user"></i>
-              </a>
-            </div> -->
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <img src="" alt="" srcset="images/bighouse.jpg" style="width: 30px; height: 30px;border-radius: 50%;">
             Profile
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             <a class="dropdown-item" href="profile.php">profile</a>
-            <a class="dropdown-item" href="#">Another action</a>
             <a href="logout.php" class="dropdown-item">
               logout
-              <iclass="fa-solid fa-right-from-bracket"></iclass=>
+              <i class="fa-solid fa-right-from-bracket"></i>
             </a>
           </div>
         </div>
@@ -75,21 +60,6 @@ $row = $select->fetch();
   <div class="container-xl px-4 mt-5 pt-5">
     <hr class="mt-0 mb-4">
     <div class="row">
-      <div class="col-xl-4">
-        <!-- Profile picture card-->
-        <div class="card mb-4 mb-xl-0">
-          <div class="card-header">Profile Picture</div>
-          <div class="card-body text-center">
-            <!-- Profile picture image-->
-            <img class="img-account-profile rounded-circle mb-2" src="http://bootdey.com/img/Content/avatar/avatar1.png"
-              alt="">
-            <!-- Profile picture help block-->
-            <div class="small font-italic text-muted mb-4">JPG or PNG no larger than 5 MB</div>
-            <!-- Profile picture upload button-->
-            <button class="btn btn-primary" type="button">Upload new image</button>
-          </div>
-        </div>
-      </div>
       <div class="col-xl-8">
         <!-- Account details card-->
         <div class="card mb-4">
@@ -102,14 +72,14 @@ $row = $select->fetch();
                 <!-- Form Group (first name)-->
                 <div class="col-md-6">
                   <label class="small mb-1" for="inputFirstName">First name</label>
-                  <input class="form-control" name="inputFirstName" id="inputFirstName" type="text" placeholder="Enter your first name"
-                    value="<?php echo $row['first_name'] ?>" required>
+                  <input class="form-control" name="inputFirstName" id="inputFirstName" type="text"
+                    placeholder="Enter your first name" value="<?php echo $row['first_name'] ?>" required>
                 </div>
                 <!-- Form Group (last name)-->
                 <div class="col-md-6">
                   <label class="small mb-1" for="inputLastName">Last name</label>
-                  <input class="form-control" name="inputLastName" id="inputLastName" type="text" placeholder="Enter your last name"
-                    value="<?php echo $row['last_name'] ?>" required>
+                  <input class="form-control" name="inputLastName" id="inputLastName" type="text"
+                    placeholder="Enter your last name" value="<?php echo $row['last_name'] ?>" required>
                 </div>
               </div>
 
@@ -117,24 +87,24 @@ $row = $select->fetch();
               <!-- Form Group (email address)-->
               <div class="mb-3">
                 <label class="small mb-1" for="inputEmailAddress">Email address</label>
-                <input class="form-control" name="inputEmailAddress" id="inputEmailAddress" type="email" placeholder="Enter your email address"
-                  value="<?php echo $row['email'] ?>" required>
+                <input class="form-control" name="inputEmailAddress" id="inputEmailAddress" type="email"
+                  placeholder="Enter your email address" value="<?php echo $row['email'] ?>" required>
               </div>
 
-                <!-- Form Group (phone number)-->
-                <div class="col-md-6">
-                  <label class="small mb-1" for="inputPhone">Phone number</label>
-                  <input class="form-control" name="inputPhone" id="inputPhone" type="tel" placeholder="Enter your phone number"
-                    value="<?php echo $row['phone_number'] ?>" required>
-                </div>
+              <!-- Form Group (phone number)-->
+              <div class="col-md-6">
+                <label class="small mb-1" for="inputPhone">Phone number</label>
+                <input class="form-control" name="inputPhone" id="inputPhone" type="tel"
+                  placeholder="Enter your phone number" value="<?php echo $row['phone_number'] ?>" required>
+              </div>
 
-              
+
               <div class="row gx-3 mb-3">
                 <!-- Form Group (phone number)-->
                 <div class="col-md-6">
                   <label class="small mb-1" for="inputPhone">password</label>
-                  <input class="form-control" name="inpPassword" id="inpPassword" type="tel" placeholder="Enter your phone number"
-                    value="" required>
+                  <input class="form-control" name="inpPassword" id="inpPassword" type="tel"
+                    placeholder="Enter your phone number" value="" required>
                 </div>
                 <!-- Form Group (birthday)-->
                 <div class="col-md-6">
@@ -226,49 +196,44 @@ $row = $select->fetch();
     }
 
 
-<?php
-  $newPassword = $_POST['newPassword'];
-  $inpPassword = $_POST['inpPassword'];
-  $inputPhone = $_POST['inputPhone'];
-  $inputEmailAddress = $_POST['inputEmailAddress'];
-  $inputLastName = $_POST['inputLastName'];
-  $inputFirstName = $_POST['inputFirstName'];
-  $client_id = $_SESSION['client_id'];
+    <?php
+    $newPassword = $_POST['newPassword'];
+    $inpPassword = $_POST['inpPassword'];
+    $inputPhone = $_POST['inputPhone'];
+    $inputEmailAddress = $_POST['inputEmailAddress'];
+    $inputLastName = $_POST['inputLastName'];
+    $inputFirstName = $_POST['inputFirstName'];
+    $client_id = $_SESSION['client_id'];
 
-  if (isset($_POST['saveChange'])) {
-    echo 'qsdqsdlmkqsdmqsmdml';
-    $select = $conn->query("SELECT password FROM client");
-    $row = $select->fetch();
-    echo $row['password'];
-    if (is_array($row)) {
-      // virification password
-      if (password_verify($_POST['inpPassword'], $row['password'])){
+    if (isset($_POST['saveChange'])) {
+      $select = $conn->query("SELECT password FROM client");
+      $row = $select->fetch();
+      echo $row['password'];
+      if (is_array($row)) {
+        // virification password
+        if (password_verify($_POST['inpPassword'], $row['password'])) {
 
-        $sql = "UPDATE client SET first_name=:$inputFirstName, last_name=:$inputLastName, email=:sex, password=:$newPassword , phone_number=:$inputPhone WHERE id=:$client_id";
-        $pdo->prepare($sql)->execute($data);
-        echo 'skdlqlksfdl';
+          $sql = "UPDATE client SET first_name=:$inputFirstName, last_name=:$inputLastName, email=:sex, password=:$newPassword , phone_number=:$inputPhone WHERE id=:$client_id";
+          $conn->prepare($sql)->execute($data);
+          echo 'skdlqlksfdl';
 
-        echo '<script>swal({
+          echo '<script>swal({
           title: "change is sucsses",
           text: "You clicked the button!",
           icon: "sucsses",
           button: "Aww yiss!",
         });</script>';
-      } else {
-        echo '<script>swal({
+        } else {
+          echo '<script>swal({
           title: "change is not sucsses",
           text: "You clicked the button!",
           icon: "warning",
           button: "Aww yiss!",
         });</script>';
+        }
       }
     }
-  }
-?>
-
-
-
-
+    ?>
   </style>
 
   <!-- ============ footer ================= -->

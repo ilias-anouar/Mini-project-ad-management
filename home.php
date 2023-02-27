@@ -2,11 +2,115 @@
 include "connect.php";
 include "logIn.php";
 include "header.php";
-include "search.php";
 $city = "SELECT DISTINCT `City` FROM `annonce`";
-// $sql = "SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1";
-$result = $conn->query($sql);
+if (isset($_POST['searchbtn'])) {
+  // retrieve the form inputs using $_POST and store them in the $queryParams array
+  if (!empty($_POST['City'])) {
+    $queryParams[] = "City = '{$_POST['City']}'";
+  }
+
+  if (!empty($_POST['type'])) {
+    $queryParams[] = "type = '{$_POST['type']}'";
+  }
+
+  if (!empty($_POST['category'])) {
+    $queryParams[] = "category = '{$_POST['category']}'";
+  }
+
+  if (!empty($_POST['max_Price'])) {
+    $queryParams[] = "price <= {$_POST['max_Price']}";
+  }
+
+  if (!empty($_POST['min_Price'])) {
+    $queryParams[] = "price >= {$_POST['min_Price']}";
+  }
+
+  $filter = ("SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1 AND " . implode(" AND ", $queryParams));
+  $filter = $conn->query($filter);
+
+} else {
+
+  $pageId;
+
+  if (isset($_GET['pageId'])) {
+    $pageId = $_GET['pageId'];
+  } else {
+    $pageId = 1;
+  }
+
+  $endIndex = $pageId * 6;
+  $StartIndex = $endIndex - 6;
+
+  $sql = ("SELECT * FROM `annonce` NATURAL JOIN `image_d_annonce` where Is_principale = 1 LIMIT 6 OFFSET $StartIndex");
+
+  $page = 'SELECT * FROM annonce';
+
+  $result = $conn->query($sql);
+
+  $annoncesLength = $conn->query($page)->rowCount();
+
+  $pagesNum = 0;
+
+  if (($annoncesLength % 6) == 0) {
+
+    $pagesNum = $annoncesLength / 6;
+  } else {
+    $pagesNum = ceil($annoncesLength / 6);
+  }
+}
 $citys = $conn->query($city);
+// User input to select sorting field and order
+if (isset($_POST['date_sort'])) {
+  $sort_field = 'publication_date';
+  $sort_order = $_POST['date_order'];
+
+  // SQL query to select cards and sort by specified field and order
+  $sql = "SELECT * FROM annonce NATURAL JOIN `image_d_annonce` where Is_principale = 1 ORDER BY $sort_field $sort_order LIMIT 6 OFFSET $StartIndex";
+  $stmt = $conn->query($sql);
+  // Fetch the sorted cards
+  $sorted = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $page = 'SELECT * FROM annonce';
+
+  $result = $conn->query($sql);
+
+  $annoncesLength = $conn->query($page)->rowCount();
+
+  $pagesNum = 0;
+
+  if (($annoncesLength % 6) == 0) {
+
+    $pagesNum = $annoncesLength / 6;
+  } else {
+    $pagesNum = ceil($annoncesLength / 6);
+  }
+}
+if (isset($_POST['price_sort'])) {
+  $sort_field = 'price';
+  $sort_order = $_POST['price_order'];
+
+  // SQL query to select cards and sort by specified field and order
+  $sql = "SELECT * FROM annonce NATURAL JOIN `image_d_annonce` where Is_principale = 1 ORDER BY $sort_field $sort_order LIMIT 6 OFFSET $StartIndex";
+  $stmt = $conn->query($sql);
+  // Fetch the sorted cards
+  $sorted = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $page = 'SELECT * FROM annonce';
+
+  $result = $conn->query($sql);
+
+  $annoncesLength = $conn->query($page)->rowCount();
+
+  $pagesNum = 0;
+
+  if (($annoncesLength % 6) == 0) {
+
+    $pagesNum = $annoncesLength / 6;
+  } else {
+    $pagesNum = ceil($annoncesLength / 6);
+  }
+}
+
 ?>
 <body>
     <!-- Navbar -->
@@ -184,50 +288,178 @@ $citys = $conn->query($city);
     </div>
   </div>
   <!-- ============================================================== -->
+  <div class="d-flex gap-3">
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+      <input id="date_order" name="date_order" type="hidden" value="ASC">
+      <button id="date_sort" class="btn btn-warning" type="submit" name="date_sort">
+        Sort by date <span id="date"><i class="fa-solid fa-sort-up"></i></span>
+      </button>
+    </form>
+    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="POST">
+      <input id="price_order" name="price_order" type="hidden" value="ASC">
+      <button id="price_sort" class="btn btn-warning" type="submit" name="price_sort">
+        Sort by price <span id="price"><i class="fa-solid fa-sort-up"></i></span>
+      </button>
+    </form>
+  </div>
   <div class="container mt-5 d-flex flex-wrap gap-5 justify-content-center">
     <?php
-    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-      $id = $row['ad_id'];
-      ?>
-      <div class="card wow text-center">
-        <img class="card-img-top mb-3 img-card"
-          src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
-        <div class="card-body">
-          <div id="icon-span">
-            <p id="type-an">
-              <?php echo $row['type']; ?>
+    if ($_SERVER["REQUEST_METHOD"] == "GET") {
+      while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        <div class="card wow text-center">
+          <img class="card-img-top mb-3 img-card"
+            src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
+          <div class="card-body">
+            <div id="icon-span">
+              <p id="type-an">
+                <?php echo $row['type']; ?>
+              </p>
+              <form action="" method="GET">
+                <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
+              </form>
+            </div>
+            <h4 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $row['title']; ?>
+            </h4>
+            <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;font-size: 23px; width: 100%; ">
+              <strong>
+                <?php echo $row['category']; ?> |
+                <?php echo $row['price']; ?>$
+              </strong>
+            </h5>
+            <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $row['City']; ?>
             </p>
-            <form action="" method="GET">
-              <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
+            <form action="detailes.php" method="post">
+              <input type="hidden" name="detailesID" value="<?php echo $row['ad_id'] ?>">
+              <button class=" btn btn-danger" name="Details" id="Details<?php echo $row['ad_id'] ?>"
+                style="border: none;width: 90px;height: 38px;color: #fff;background: #A63F04;" type="submit"
+                data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
             </form>
           </div>
-          <h4 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
-            <?php echo $row['title']; ?>
-          </h4>
-          <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;font-size: 23px; width: 100%; ">
-            <strong>
-              <?php echo $row['category']; ?> |
-              <?php echo $row['price']; ?>$
-            </strong>
-          </h5>
-          <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
-            <?php echo $row['City']; ?>
-          </p>
-          <form action="detailes.php" method="post">
-            <input type="hidden" name="detailesID" value="<?php echo $row['ad_id'] ?>">
-            <button class=" btn btn-danger" name="Details" id="Details<?php echo $row['ad_id'] ?>"
-              style="border: none;width: 90px;height: 38px;color: #fff;background: #A63F04;" type="submit"
-              data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
-          </form>
         </div>
-      </div>
-      <?php
+        <?php
+      }
+    } elseif (isset($_POST['searchbtn'])) {
+      while ($row = $filter->fetch(PDO::FETCH_ASSOC)) {
+        ?>
+        <div class="card wow text-center">
+          <img class="card-img-top mb-3 img-card"
+            src="images/<?php echo str_replace("C:fakepath", "", $row['image_url']); ?>">
+          <div class="card-body">
+            <div id="icon-span">
+              <p id="type-an">
+                <?php echo $row['type']; ?>
+              </p>``````````````````````````````````````````````````````````````````
+              <form action="" method="GET">
+                <input type="hidden" name="id" value="<?php echo $row['ad_id']; ?>">
+              </form>
+            </div>
+            <h4 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $row['title']; ?>
+            </h4>
+            <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;font-size: 23px; width: 100%; ">
+              <strong>
+                <?php echo $row['category']; ?> |
+                <?php echo $row['price']; ?>$
+              </strong>
+            </h5>
+            <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $row['City']; ?>
+            </p>
+            <form action="detailes.php" method="post">
+              <input type="hidden" name="detailesID" value="<?php echo $row['ad_id'] ?>">
+              <button class=" btn btn-danger" name="Details" id="Details<?php echo $row['ad_id'] ?>"
+                style="border: none;width: 90px;height: 38px;color: #fff;background: #A63F04;" type="submit"
+                data-target="#Details<?php echo $row['ad_id'] ?>">Details</button>
+            </form>
+          </div>
+        </div>
+        <?php
+      }
+    } elseif (isset($_POST['date_sort'])) {
+      for ($i = 0; $i < count($sorted); $i++) {
+        ?>
+        <div class="card wow text-center">
+          <img class="card-img-top mb-3 img-card"
+            src="images/<?php echo str_replace("C:fakepath", "", $sorted[$i]['image_url']); ?>">
+          <div class="card-body">
+            <div id="icon-span">
+              <p id="type-an">
+                <?php echo $sorted[$i]['type']; ?>
+              </p>
+              <form action="" method="GET">
+                <input type="hidden" name="id" value="<?php echo $sorted[$i]['ad_id']; ?>">
+              </form>
+            </div>
+            <h4 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $sorted[$i]['title']; ?>
+            </h4>
+            <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;font-size: 23px; width: 100%; ">
+              <strong>
+                <?php echo $sorted[$i]['category']; ?> |
+                <?php echo $sorted[$i]['price']; ?>$
+              </strong>
+            </h5>
+            <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $sorted[$i]['City']; ?>
+            </p>
+            <form action="detailes.php" method="post">
+              <input type="hidden" name="detailesID" value="<?php echo $sorted[$i]['ad_id'] ?>">
+              <button class=" btn btn-danger" name="Details" id="Details<?php echo $sorted[$i]['ad_id'] ?>"
+                style="border: none;width: 90px;height: 38px;color: #fff;background: #A63F04;" type="submit"
+                data-target="#Details<?php echo $sorted[$i]['ad_id'] ?>">Details</button>
+            </form>
+          </div>
+        </div>
+        <?php
+      }
+    } elseif (isset($_POST['price_sort'])) {
+      for ($i = 0; $i < count($sorted); $i++) {
+        ?>
+        <div class="card wow text-center">
+          <img class="card-img-top mb-3 img-card"
+            src="images/<?php echo str_replace("C:fakepath", "", $sorted[$i]['image_url']); ?>">
+          <div class="card-body">
+            <div id="icon-span">
+              <p id="type-an">
+                <?php echo $sorted[$i]['type']; ?>
+              </p>
+              <form action="" method="GET">
+                <input type="hidden" name="id" value="<?php echo $sorted[$i]['ad_id']; ?>">
+              </form>
+            </div>
+            <h4 class="card-title" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $sorted[$i]['title']; ?>
+            </h4>
+            <h5 class="card-sub-title" style="font-family: Antic, sans-serif;color: #38ae53;font-size: 23px; width: 100%; ">
+              <strong>
+                <?php echo $sorted[$i]['category']; ?> |
+                <?php echo $sorted[$i]['price']; ?>$
+              </strong>
+            </h5>
+            <p class="card-text text-center" style="font-family: Antic, sans-serif;color: rgb(81,87,94);">
+              <?php echo $sorted[$i]['City']; ?>
+            </p>
+            <form action="detailes.php" method="post">
+              <input type="hidden" name="detailesID" value="<?php echo $sorted[$i]['ad_id'] ?>">
+              <button class=" btn btn-danger" name="Details" id="Details<?php echo $sorted[$i]['ad_id'] ?>"
+                style="border: none;width: 90px;height: 38px;color: #fff;background: #A63F04;" type="submit"
+                data-target="#Details<?php echo $sorted[$i]['ad_id'] ?>">Details</button>
+            </form>
+          </div>
+        </div>
+        <?php
+      }
     }
     ;
+    ?>
+    <?php
     $pdo = null;
     ?>
 </main>
-<?php if ($_SERVER["REQUEST_METHOD"] == "GET") { ?>
+<?php if ($_SERVER["REQUEST_METHOD"] == "GET" || isset($_POST['date_sort']) || isset($_POST['price_sort'])) { ?>
   <nav class="mt-5 mb-5 " aria-label="Page navigation example">
     <ul class=" flex-wrap pagination justify-content-center">
       <?php for ($i = 1; $i <= $pagesNum; $i++) { ?>
